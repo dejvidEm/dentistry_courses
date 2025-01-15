@@ -1,8 +1,11 @@
 import React from "react";
 
-import CourseCard from "../ui/CourseCard";
-
 import { FaArrowRight, FaArrowLeft } from "react-icons/fa6";
+
+import CourseCard from "../ui/CourseCard";
+import Slider from "../ui/Slider";
+import SecondSlider from "../ui/SecondSlider";
+import Testimonial from "../ui/ReviewCard";
 
 // Typy pre dynamické dáta
 interface Feature {
@@ -61,6 +64,28 @@ const features: Feature[] = [
     description:
       "Ponúkame flexibilitu vo výbere kurzov a osobný mentoring. Naši účastníci dostávajú podporu aj po absolvovaní kurzu, aby si osvojili praktické zručnosti a vedeli ich aplikovať vo svojej praxi.",
   },
+];
+
+const reviews = [
+  {
+    name: 'John Doe',
+    role: 'Software Engineer',
+    photo: 'https://via.placeholder.com/150',
+    quote: 'This is a fantastic product!',
+  },
+  {
+    name: 'Jane Smith',
+    role: 'Product Manager',
+    photo: 'https://via.placeholder.com/150',
+    quote: 'Highly recommend to anyone looking for quality.',
+  },
+  {
+    name: 'Alex Johnson',
+    role: 'Designer',
+    photo: 'https://via.placeholder.com/150',
+    quote: 'Beautifully designed and works perfectly.',
+  },
+  // Add more testimonials as needed
 ];
 
 const HomePage: React.FC = () => {
@@ -161,30 +186,41 @@ const HomePage: React.FC = () => {
 
         {/* slider s kurzami */}
         <div className="flex flex-row gap-8">
-          <CourseCard
-            image="/src/assets/Homepage_photo_2.png"
-            title="DC/TMD Kalibračný kurz"
-            description="Kurz poskytuje prehľad o temporomandibulárnych poruchách (TMD), vrátane anatómie, etológie a diagnostiky. Účastníci získajú praktické skúsenosti s dotazníkmi, terapiami a efektívnou komunikáciou s pacientmi."
-            date="15.04.2025"
-            duration="9 hodín"
-            capacity="10/14"
-          />
-          <CourseCard
-            image="/src/assets/Homepage_photo_2.png"
-            title="DC/TMD Kalibračný kurz"
-            description="Kurz poskytuje prehľad o temporomandibulárnych poruchách (TMD), vrátane anatómie, etológie a diagnostiky. Účastníci získajú praktické skúsenosti s dotazníkmi, terapiami a efektívnou komunikáciou s pacientmi."
-            date="15.04.2025"
-            duration="9 hodín"
-            capacity="10/14"
-          />
-          <CourseCard
-            image="/src/assets/Homepage_photo_2.png"
-            title="DC/TMD Kalibračný kurz"
-            description="Kurz poskytuje prehľad o temporomandibulárnych poruchách (TMD), vrátane anatómie, etológie a diagnostiky. Účastníci získajú praktické skúsenosti s dotazníkmi, terapiami a efektívnou komunikáciou s pacientmi."
-            date="15.04.2025"
-            duration="9 hodín"
-            capacity="10/14"
-          />
+        <Slider>
+        <CourseCard
+          image="https://via.placeholder.com/150"
+          title="Course 1"
+          description="Description of course 1."
+          date="2025-01-20"
+          duration="2 hours"
+          capacity="30"
+        />
+        <CourseCard
+          image="https://via.placeholder.com/150"
+          title="Course 2"
+          description="Description of course 2."
+          date="2025-01-25"
+          duration="3 hours"
+          capacity="25"
+        />
+        <CourseCard
+          image="https://via.placeholder.com/150"
+          title="Course 3"
+          description="Description of course 3."
+          date="2025-02-10"
+          duration="1.5 hours"
+          capacity="20"
+        />
+        <CourseCard
+          image="https://via.placeholder.com/150"
+          title="Course 4"
+          description="Description of course 4."
+          date="2025-03-05"
+          duration="4 hours"
+          capacity="15"
+        />
+        {/* Ďalšie kurzy môžu byť pridané */}
+      </Slider>
         </div>
       </section>
 
@@ -215,6 +251,34 @@ const HomePage: React.FC = () => {
           >
             {heroContent2.buttonText}
           </a>
+        </div>
+      </section>
+
+    {/* Hodnotenia kurzov */}
+      <section className="flex flex-row bg-red-200">
+        <div>
+            <h1 className="text-3xl font-medium">Hodnotenia kurzov</h1>
+            <div className="flex flex-row">
+            <div className="bg-slate-100 rounded-lg p-4">
+                <FaArrowLeft className="" />
+              </div>
+              <div className="bg-slate-100 rounded-lg p-4">
+                <FaArrowRight className="" />
+              </div>
+            </div>
+        </div>
+        <div>
+        <SecondSlider
+          items={reviews.map((testimonial, index) => (
+          <Testimonial
+            key={index}
+            name={testimonial.name}
+            role={testimonial.role}
+            photo={testimonial.photo}
+            quote={testimonial.quote}
+          />
+        ))}
+      />
         </div>
       </section>
     </div>
