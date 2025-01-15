@@ -9,6 +9,7 @@ import Kurzy from "./components/pages/Kurzy";
 import Blog from "./components/pages/Blog";
 import Kontakt from "./components/pages/Kontakt";
 import Onas from "./components/pages/Onas";
+import Banner from "./components/ui/Banner";
 
 const App: React.FC = () => {
   return (
@@ -29,6 +30,7 @@ const App: React.FC = () => {
         </main>
 
         {/* Footer */}
+        <Banner/>
         <Footer />
       </div>
     </Router>

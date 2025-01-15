@@ -68,22 +68,34 @@ const features: Feature[] = [
 
 const reviews = [
   {
-    name: 'John Doe',
-    role: 'Software Engineer',
-    photo: 'https://via.placeholder.com/150',
-    quote: 'This is a fantastic product!',
+    name: "John Doe",
+    role: "Software Engineer",
+    photo: "/src/assets/review_profile_photo.png",
+    quote: "This is a fantastic product!",
   },
   {
-    name: 'Jane Smith',
-    role: 'Product Manager',
-    photo: 'https://via.placeholder.com/150',
-    quote: 'Highly recommend to anyone looking for quality.',
+    name: "Jane Smith",
+    role: "Product Manager",
+    photo: "/src/assets/review_profile_photo.png",
+    quote: "Highly recommend to anyone looking for quality.",
   },
   {
-    name: 'Alex Johnson',
-    role: 'Designer',
-    photo: 'https://via.placeholder.com/150',
-    quote: 'Beautifully designed and works perfectly.',
+    name: "Alex Johnson",
+    role: "Designer",
+    photo: "/src/assets/review_profile_photo.png",
+    quote: "Beautifully designed and works perfectly.",
+  },
+  {
+    name: "James West",
+    role: "Dentist",
+    photo: "/src/assets/review_profile_photo.png",
+    quote: "Amazing courses and tutorials!",
+  },
+  {
+    name: "Alex Johnson",
+    role: "Worker",
+    photo: "/src/assets/review_profile_photo.png",
+    quote: "Lovely work, keep it up!",
   },
   // Add more testimonials as needed
 ];
@@ -186,58 +198,58 @@ const HomePage: React.FC = () => {
 
         {/* slider s kurzami */}
         <div className="flex flex-row gap-8">
-        <Slider>
-        <CourseCard
-          image="https://via.placeholder.com/150"
-          title="Course 1"
-          description="Description of course 1."
-          date="2025-01-20"
-          duration="2 hours"
-          capacity="30"
-        />
-        <CourseCard
-          image="https://via.placeholder.com/150"
-          title="Course 2"
-          description="Description of course 2."
-          date="2025-01-25"
-          duration="3 hours"
-          capacity="25"
-        />
-        <CourseCard
-          image="https://via.placeholder.com/150"
-          title="Course 3"
-          description="Description of course 3."
-          date="2025-02-10"
-          duration="1.5 hours"
-          capacity="20"
-        />
-        <CourseCard
-          image="https://via.placeholder.com/150"
-          title="Course 4"
-          description="Description of course 4."
-          date="2025-03-05"
-          duration="4 hours"
-          capacity="15"
-        />
-        {/* Ďalšie kurzy môžu byť pridané */}
-      </Slider>
+          <Slider>
+            <CourseCard
+              image="https://via.placeholder.com/150"
+              title="Course 1"
+              description="Description of course 1."
+              date="2025-01-20"
+              duration="2 hours"
+              capacity="30"
+            />
+            <CourseCard
+              image="https://via.placeholder.com/150"
+              title="Course 2"
+              description="Description of course 2."
+              date="2025-01-25"
+              duration="3 hours"
+              capacity="25"
+            />
+            <CourseCard
+              image="https://via.placeholder.com/150"
+              title="Course 3"
+              description="Description of course 3."
+              date="2025-02-10"
+              duration="1.5 hours"
+              capacity="20"
+            />
+            <CourseCard
+              image="https://via.placeholder.com/150"
+              title="Course 4"
+              description="Description of course 4."
+              date="2025-03-05"
+              duration="4 hours"
+              capacity="15"
+            />
+            {/* Ďalšie kurzy môžu byť pridané */}
+          </Slider>
         </div>
       </section>
 
       {/* sekcia s fotkami na lavej strane */}
       <section className="max-w-7xl mx-auto px-4 py-16 grid grid-cols-1 lg:grid-cols-2 gap-48 items-center">
-      {/* Prvý stĺpec */}
-      <div className="flex flex-row gap-4">
-            <img
-              src="/src/assets/Homepage_photo_1.png"
-              alt="Image 1"
-              className="rounded w-[300px]"
-            />
-            <img
-              src="/src/assets/Homepage_photo_3.png"
-              alt="Image 2"
-              className="rounded w-[300px]"
-            />
+        {/* Prvý stĺpec */}
+        <div className="flex flex-row gap-4">
+          <img
+            src="/src/assets/home_img_sec.png"
+            alt="Image 1"
+            className="rounded w-[300px]"
+          />
+          <img
+            src="/src/assets/home_img_sec2.png"
+            alt="Image 2"
+            className="rounded w-[300px]"
+          />
         </div>
         {/* druhý stĺpec */}
         <div>
@@ -254,31 +266,36 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-    {/* Hodnotenia kurzov */}
+      {/* Hodnotenia kurzov */}
       <section className="flex flex-row bg-red-200">
         <div>
-            <h1 className="text-3xl font-medium">Hodnotenia kurzov</h1>
-            <div className="flex flex-row">
+          <h1 className="text-3xl font-medium">Hodnotenia kurzov</h1>
+          <div className="flex flex-row">
             <div className="bg-slate-100 rounded-lg p-4">
-                <FaArrowLeft className="" />
-              </div>
-              <div className="bg-slate-100 rounded-lg p-4">
-                <FaArrowRight className="" />
-              </div>
+              <FaArrowLeft className="" />
             </div>
+            <div className="bg-slate-100 rounded-lg p-4">
+              <FaArrowRight className="" />
+            </div>
+          </div>
+          <SecondSlider
+            items={reviews.map((testimonial, index) => (
+              <Testimonial
+                key={index}
+                name={testimonial.name}
+                role={testimonial.role}
+                photo={testimonial.photo}
+                quote={testimonial.quote}
+              />
+            ))}
+          />
         </div>
         <div>
-        <SecondSlider
-          items={reviews.map((testimonial, index) => (
-          <Testimonial
-            key={index}
-            name={testimonial.name}
-            role={testimonial.role}
-            photo={testimonial.photo}
-            quote={testimonial.quote}
-          />
-        ))}
-      />
+          <img
+              src="/src/assets/reviewsCitat.png"
+              alt="Image 1"
+              className="rounded w-[600px]"
+            />
         </div>
       </section>
     </div>
