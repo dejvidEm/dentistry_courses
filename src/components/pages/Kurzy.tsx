@@ -2,7 +2,11 @@ import React from 'react'
 
 const Kurzy = () => {
   return (
-    <div>Kurzy</div>
+    <div>
+      <div>
+        Toto je stranka s kurzami
+      </div>
+    </div>
   )
 }
 
