@@ -27,20 +27,20 @@ const Navbar: React.FC = () => {
           {/* Desktop Menu */}
           <div className="hidden md:flex space-x-8">
             <div className="relative group">
-              <button className="text-gray-700 flex gap-1 items-center hover:text-[#38412b] focus:outline-none">
+              <Link to="/kurzy" className="text-gray-700 flex gap-1 items-center hover:text-[#38412b] focus:outline-none">
                 Kurzy
                 <IoChevronDown />
-              </button>
+              </Link>
               {/* Dropdown Menu */}
               <div className="absolute left-0 mt-2 w-40 bg-white shadow-lg rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                 <Link
-                  to="/kurz1"
+                  to="/"
                   className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
                 >
                   Kurz 1
                 </Link>
                 <Link
-                  to="/kurz2"
+                  to="/"
                   className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
                 >
                   Kurz 2

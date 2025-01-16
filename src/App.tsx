@@ -22,7 +22,7 @@ const App: React.FC = () => {
         <main className="flex-grow">
           <Routes>
             <Route path="/" element={<Homepage />} />
-            <Route path="/about" element={<Kurzy />} />
+            <Route path="/kurzy" element={<Kurzy />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/contact" element={<Kontakt />} />
             <Route path="*" element={<Onas />} /> {/* 404 stránka */}

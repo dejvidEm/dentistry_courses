@@ -267,7 +267,7 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* Hodnotenia kurzov */}
-      <section className="flex flex-row bg-red-200">
+      <section className="flex flex-row">
         <div>
           <h1 className="text-3xl font-medium">Hodnotenia kurzov</h1>
           <div className="flex flex-row">
