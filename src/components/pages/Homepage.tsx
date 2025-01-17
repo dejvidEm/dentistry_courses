@@ -37,7 +37,7 @@ const heroContent: HeroContent = {
   buttonLink: "/kurzy",
 };
 
-const heroContent2: HeroContent = {
+const heroContent2: HeroContent2 = {
   heading: "Pomáhame vám rásť vo svete stomatológie",
   description:
     "Sme špecialisti v orofaciálnej medicíne so zameraním na spánkové poruchy, orofaciálnu bolesť a opotrebovanie zubov. Našou misiou je poskytovať vzdelávanie založené na dôkazoch a podporovať odborníkov v ich praxi. Prispievame k zlepšovaniu starostlivosti o pacientov a rozvoju profesionálov.",
@@ -200,33 +200,33 @@ const HomePage: React.FC = () => {
         <div className="flex flex-row gap-8">
           <Slider>
             <CourseCard
-              image="https://via.placeholder.com/150"
+              image="src/assets/home_img_sec2.png"
               title="Course 1"
-              description="Description of course 1."
+              description="Toto je popis kurzu v ktorom je opisane to co sa na kurze naucite a co sa na nom dozviete, pre podrobnejsie info si rozkliknite tento kurz a zistite co sa v nom vsetko naucite, ale ajtak sa musite prihlasit aby ste to zistili"
               date="2025-01-20"
               duration="2 hours"
               capacity="30"
             />
             <CourseCard
-              image="https://via.placeholder.com/150"
+              image="src/assets/home_img_sec2.png"
               title="Course 2"
-              description="Description of course 2."
+              description="Toto je popis kurzu v ktorom je opisane to co sa na kurze naucite a co sa na nom dozviete, pre podrobnejsie info si rozkliknite tento kurz a zistite co sa v nom vsetko naucite, ale ajtak sa musite prihlasit aby ste to zistili"
               date="2025-01-25"
               duration="3 hours"
               capacity="25"
             />
             <CourseCard
-              image="https://via.placeholder.com/150"
+              image="src/assets/home_img_sec2.png"
               title="Course 3"
-              description="Description of course 3."
+              description="Toto je popis kurzu v ktorom je opisane to co sa na kurze naucite a co sa na nom dozviete, pre podrobnejsie info si rozkliknite tento kurz a zistite co sa v nom vsetko naucite, ale ajtak sa musite prihlasit aby ste to zistili"
               date="2025-02-10"
               duration="1.5 hours"
               capacity="20"
             />
             <CourseCard
-              image="https://via.placeholder.com/150"
+              image="src/assets/home_img_sec2.png"
               title="Course 4"
-              description="Description of course 4."
+              description="Toto je popis kurzu v ktorom je opisane to co sa na kurze naucite a co sa na nom dozviete, pre podrobnejsie info si rozkliknite tento kurz a zistite co sa v nom vsetko naucite, ale ajtak sa musite prihlasit aby ste to zistili"
               date="2025-03-05"
               duration="4 hours"
               capacity="15"

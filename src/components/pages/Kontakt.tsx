@@ -1,8 +1,11 @@
 import React from 'react'
+import RegistrationForm from '../ui/RegistrationForm'
 
 const Kontakt = () => {
   return (
-    <div>Kontakt</div>
+    <div>
+      <RegistrationForm/>
+    </div>
   )
 }
 
