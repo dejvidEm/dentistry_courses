@@ -1,10 +1,14 @@
-import React from 'react'
 
 import BlogPostCard from '../ui/BlogPost'
+import Breadcrumbs from '../ui/Breadcrumbs'
 
 const Blog: React.FC = () => {
   return (
     <div className='bg-white'>
+      <section className="w-full px-20">
+        <Breadcrumbs/>
+      </section>
+
       {/* Hero Section */}
       <section>
         <div className='flex flex-row justify-between px-20'>

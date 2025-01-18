@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import ButtonComponent from "./Button";
 import { IoChevronDown } from "react-icons/io5";
@@ -17,11 +17,14 @@ const Navbar: React.FC = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center">
+            
+            <Link to="/">
             <img
               src="/logo.png"
               alt="Logo"
               className="h-10 w-14"
             />
+            </Link>
           </div>
 
           {/* Desktop Menu */}

@@ -1,8 +1,13 @@
+import Breadcrumbs from "../ui/Breadcrumbs";
 import CourseCard from "../ui/CourseCard";
 
 const Kurzy: React.FC = () => {
   return (
     <div className="bg-white">
+      <section className="w-full px-20">
+        <Breadcrumbs/>
+      </section>
+
       {/* Hero Section */}
       <section>
         <div className="flex flex-row justify-between px-20">

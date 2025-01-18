@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "tailwindcss/tailwind.css";
 
 interface SliderProps {
@@ -7,10 +7,25 @@ interface SliderProps {
 
 const Slider: React.FC<SliderProps> = ({ children }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [itemsToShow, setItemsToShow] = useState(3); // Počet kariet na zobrazenie
   const totalItems = React.Children.count(children); // Zisťujeme počet detí
 
-  // Ráta s tým, že zobrazujeme 3 karty naraz
-  const itemsToShow = 3;
+  // Referencie na dotykové pozície
+  const touchStartX = useRef<number | null>(null);
+  const touchEndX = useRef<number | null>(null);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setItemsToShow(window.innerWidth < 768 ? 1 : 3);
+    };
+
+    handleResize(); // Nastavíme správne zobrazenie pri načítaní komponentu
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   const handleNext = () => {
     setCurrentIndex((prevIndex) =>
@@ -24,8 +39,39 @@ const Slider: React.FC<SliderProps> = ({ children }) => {
     );
   };
 
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    touchEndX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    if (touchStartX.current !== null && touchEndX.current !== null) {
+      const touchDiff = touchStartX.current - touchEndX.current;
+
+      if (touchDiff > 50) {
+        // Posun doprava (ďalší)
+        handleNext();
+      } else if (touchDiff < -50) {
+        // Posun doľava (predchádzajúci)
+        handlePrev();
+      }
+    }
+
+    // Resetovanie pozícií
+    touchStartX.current = null;
+    touchEndX.current = null;
+  };
+
   return (
-    <div className="relative w-full overflow-hidden">
+    <div
+      className="relative w-full overflow-hidden"
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+    >
       <div
         className="flex transition-transform duration-500 ease-in-out"
         style={{
@@ -33,21 +79,27 @@ const Slider: React.FC<SliderProps> = ({ children }) => {
         }}
       >
         {React.Children.map(children, (child) => (
-          <div className="w-1/3 flex-shrink-0 px-4">{child}</div> // Zobrazenie 3 detí vedľa seba
+          <div
+            className={`flex-shrink-0 px-4 ${itemsToShow === 1 ? "w-full" : "w-1/3"}`}
+          >
+            {child}
+          </div>
         ))}
       </div>
-      <button
-        onClick={handlePrev}
-        className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white rounded-full p-2"
-      >
-        Prev
-      </button>
-      <button
-        onClick={handleNext}
-        className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white rounded-full p-2"
-      >
-        Next
-      </button>
+      <div className="hidden md:block"> {/* Skrytie tlačidiel na mobilných zariadeniach */}
+        <button
+          onClick={handlePrev}
+          className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white rounded-full p-2"
+        >
+          Prev
+        </button>
+        <button
+          onClick={handleNext}
+          className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white rounded-full p-2"
+        >
+          Next
+        </button>
+      </div>
     </div>
   );
 };

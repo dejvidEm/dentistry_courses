@@ -1,4 +1,3 @@
-import React from "react";
 
 import { FaArrowRight, FaArrowLeft } from "react-icons/fa6";
 
@@ -6,6 +5,8 @@ import CourseCard from "../ui/CourseCard";
 import Slider from "../ui/Slider";
 import SecondSlider from "../ui/SecondSlider";
 import Testimonial from "../ui/ReviewCard";
+import FAQSection from "../ui/Faq";
+import Breadcrumbs from "../ui/Breadcrumbs";
 
 // Typy pre dynamické dáta
 interface Feature {
@@ -103,6 +104,10 @@ const reviews = [
 const HomePage: React.FC = () => {
   return (
     <div className="bg-white">
+      <section className="w-full px-20">
+        <Breadcrumbs/>
+      </section>
+
       {/* Hero Section */}
       <section className="max-w-7xl mx-auto px-4 py-16 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
         <div>
