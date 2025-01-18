@@ -5,7 +5,6 @@ import CourseCard from "../ui/CourseCard";
 import Slider from "../ui/Slider";
 import SecondSlider from "../ui/SecondSlider";
 import Testimonial from "../ui/ReviewCard";
-import FAQSection from "../ui/Faq";
 import Breadcrumbs from "../ui/Breadcrumbs";
 
 // Typy pre dynamické dáta
