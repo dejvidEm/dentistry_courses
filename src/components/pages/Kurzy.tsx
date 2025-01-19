@@ -95,13 +95,13 @@ const Kurzy: React.FC = () => {
     const handleReviewsNext = () => reviewsSliderRef.current?.handleNext();
 
   return (
-    <div className="bg-white">
-      <section className="w-full px-20">
+    <div className="bg-[#F3F3F1]">
+      <section className="w-full bg-white px-20">
         <Breadcrumbs />
       </section>
 
       {/* Hero Section */}
-      <section>
+      <section className="w-full bg-white mx-auto py-24">
         <div className="flex flex-row justify-between px-20">
           <h1 className="text-5xl">
             Posuňte kariéru s <br /> našimi kurzami
@@ -117,8 +117,8 @@ const Kurzy: React.FC = () => {
       </section>
 
       {/* Kurzy Section */}
-      <section>
-        <div className="w-[1200px] mx-auto grid grid-cols-3 gap-8">
+      <section className="max-w-[1400px] mx-auto py-8 px-8 lg:px-16">
+        <div className="mx-auto grid grid-cols-3 gap-8">
           {kurzyData.map((kurz) => (
             <Link to={`/kurzy/${kurz.id}`} key={kurz.id}>
               <CourseCard
@@ -135,21 +135,21 @@ const Kurzy: React.FC = () => {
       </section>
 
       {/* Hodnotenia kurzov */}
-      <section className="reviews flex flex-row py-16 px-16 gap-12">
-        <div className="flex flex-col gap-8 w-2/3">
-          <div className="flex flex-col justify-between items-start gap-10">
-            <h1 className="text-gray-800 text-3xl font-bold">
+      <section className="max-w-[1400px] mx-auto reviews flex flex-col lg:flex-row py-16 px-8 lg:px-16 gap-8 lg:gap-12">
+        <div className="flex flex-col gap-8 w-full lg:w-2/3">
+          <div className="flex flex-col lg:flex-col justify-between items-start lg:items-start gap-4">
+            <h1 className="text-gray-800 text-2xl lg:text-3xl font-bold">
               Hodnotenia kurzov
             </h1>
             <div className="arrows flex flex-row gap-4">
               <div
-                className="bg-gray-700 text-white rounded-lg p-4 cursor-pointer hover:bg-gray-600 transition"
+                className="bg-white rounded-lg p-4 cursor-pointer hover:bg-gray-200 transition"
                 onClick={handleReviewsPrev}
               >
                 <FaArrowLeft />
               </div>
               <div
-                className="bg-gray-700 text-white rounded-lg p-4 cursor-pointer hover:bg-gray-600 transition"
+                className="bg-white rounded-lg p-4 cursor-pointer hover:bg-gray-200 transition"
                 onClick={handleReviewsNext}
               >
                 <FaArrowRight />
@@ -172,8 +172,12 @@ const Kurzy: React.FC = () => {
             visibleItems={2} // Napr. 2 viditeľné položky na desktopoch
           />
         </div>
-        <div className="">
-          <img src="/images/reviewsCitat.png" alt="quote" className="w-[300px]"/>
+        <div className="flex justify-center items-start lg:items-end">
+          <img
+            src="/images/reviewsCitat.png"
+            alt="quote"
+            className="w-[200px] lg:w-[300px]"
+          />
         </div>
       </section>
     </div>

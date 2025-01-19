@@ -1,12 +1,19 @@
-import React, { useImperativeHandle, useRef, useState, useEffect, forwardRef } from "react";
+import React, {
+  useImperativeHandle,
+  useRef,
+  useState,
+  useEffect,
+  forwardRef,
+} from "react";
 
 interface SliderProps {
   items: React.ReactNode[]; // Položky slideru
   visibleItems: number; // Počet viditeľných kariet
+  showPartialNext?: boolean; // Zobraziť čiastočne ďalší slider
 }
 
 const ResponsiveSlider = forwardRef((props: SliderProps, ref) => {
-  const { items, visibleItems } = props;
+  const { items, visibleItems, showPartialNext = false } = props;
   const [currentIndex, setCurrentIndex] = useState(0);
   const [itemsToShow, setItemsToShow] = useState(visibleItems);
 
@@ -67,6 +74,8 @@ const ResponsiveSlider = forwardRef((props: SliderProps, ref) => {
     moveX.current = null;
   };
 
+  const partialVisibleWidth = showPartialNext ? 10 : 0; // Percentá viditeľného ďalšieho slideru
+
   return (
     <div
       className="relative w-full overflow-hidden"
@@ -78,13 +87,16 @@ const ResponsiveSlider = forwardRef((props: SliderProps, ref) => {
         className="flex transition-transform duration-500 ease-in-out"
         style={{
           transform: `translateX(-${(currentIndex * 100) / itemsToShow}%)`,
+          gap: `${partialVisibleWidth}px`,
         }}
       >
         {items.map((item, index) => (
           <div
             key={index}
-            style={{ width: `${100 / itemsToShow}%` }} // Dynamická šírka kariet
-            className="flex-shrink-0 px-4"
+            style={{
+              width: `${100 / itemsToShow - partialVisibleWidth / itemsToShow}%`,
+            }}
+            className="flex-shrink-0 flex-row pr-2"
           >
             {item}
           </div>

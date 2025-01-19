@@ -20,7 +20,7 @@ const CategoryFilter: React.FC<CategoryFilterProps> = ({ categories, onSelectCat
   };
 
   return (
-    <div className="flex space-x-4">
+    <div className="max-w-[1400px] mx-auto flex space-x-4">
       {categories.map((category) => (
         <button
           key={category.id}

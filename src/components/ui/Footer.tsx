@@ -1,22 +1,25 @@
 import { useState, useEffect } from "react";
+import { FaFacebook, FaInstagram, FaPaperPlane, FaChevronDown } from "react-icons/fa";
 
-import { FaFacebook, FaInstagram, FaPaperPlane } from "react-icons/fa";
+interface Kontakt {
+  phone: string;
+  email: string;
+}
 
+const Footer: React.FC = () => {
+  const [isNavigationOpen, setNavigationOpen] = useState<boolean>(false);
+  const [isCoursesOpen, setCoursesOpen] = useState<boolean>(false);
+  const [isContactOpen, setContactOpen] = useState<boolean>(false);
+  const [isDesktop, setIsDesktop] = useState<boolean>(window.innerWidth >= 768);
 
-const Footer = () => {
-  const [isNavigationOpen, setNavigationOpen] = useState(false);
-  const [isCoursesOpen, setCoursesOpen] = useState(false);
-  const [isContactOpen, setContactOpen] = useState(false);
-  const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 768);
-
-  const medical = "Poskytujeme vzdelávanie, ktoré pomáha zubným profesionálom zlepšovať starostlivosť o pacienta. Posúvame zubné lekárstvo vpred vďaka odbornosti, flexibilite a podpore.";
-  const navigacia = ["Úvod", "O nás", "Služby", "Kurzy", "Kontakt"];
-  const kurzy = ["Kurz 1", "Kurz 2", "Kurz 3"];
-  const kontakt = {
+  const medical =
+    "Poskytujeme vzdelávanie, ktoré pomáha zubným profesionálom zlepšovať starostlivosť o pacienta. Posúvame zubné lekárstvo vpred vďaka odbornosti, flexibilite a podpore.";
+  const navigacia: string[] = ["Úvod", "O nás", "Služby", "Kurzy", "Kontakt"];
+  const kurzy: string[] = ["Kurz 1", "Kurz 2", "Kurz 3"];
+  const kontakt: Kontakt = {
     phone: "+421 123 456 789",
     email: "info@dentalklinika.sk",
   };
-  
 
   useEffect(() => {
     const handleResize = () => {
@@ -25,35 +28,69 @@ const Footer = () => {
       if (isNowDesktop) {
         setNavigationOpen(true);
         setCoursesOpen(true);
-        setContactOpen(true)
+        setContactOpen(true);
       } else {
         setNavigationOpen(false);
         setCoursesOpen(false);
-        setContactOpen(false)
+        setContactOpen(false);
       }
     };
 
-    // Nastavenie na počiatočný stav podľa veľkosti obrazovky
     handleResize();
-
-    // Event listener pre zmenu veľkosti obrazovky
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  const renderSection = (
+    title: string,
+    isOpen: boolean,
+    setIsOpen: React.Dispatch<React.SetStateAction<boolean>>,
+    items: string[]
+  ) => (
+    <div className="md:w-1/3">
+      <div className="flex justify-between items-center md:block">
+        <h2 className="font-semibold text-lg">{title}</h2>
+        {!isDesktop && (
+          <button
+            className="text-gray-500"
+            onClick={() => setIsOpen(!isOpen)}
+            aria-label={`${title} toggle`}
+          >
+            <span
+              className={`transform transition-transform duration-300 ${
+                isOpen ? "rotate-180" : "rotate-0"
+              }`}
+            >
+              <FaChevronDown />
+            </span>
+          </button>
+        )}
+      </div>
+      <ul
+        className={`${
+          isOpen ? "block" : "hidden"
+        } mt-2 space-y-1 text-sm text-gray-700`}
+      >
+        {items.map((item, index) => (
+          <li key={index}>{item}</li>
+        ))}
+      </ul>
+    </div>
+  );
+
   return (
     <footer className="p-6">
       <div className="flex justify-between border-b-2 border-gray-100 py-4">
-        <img src="/images/logo_footer.png" alt="logo" className="w-20"/>
+        <img src="/images/logo_footer.png" alt="logo" className="w-20" />
         <div className="flex flex-row gap-2">
           <div className="bg-[#414F22] hover:bg-[#586A31] flex h-9 items-center align-middle p-2 cursor-pointer">
-          <FaFacebook className="text-slate-100" size={20}/>
+            <FaFacebook className="text-slate-100" size={20} />
           </div>
           <div className="bg-[#414F22] hover:bg-[#586A31] flex h-9 items-center align-middle p-2 cursor-pointer">
-          <FaInstagram className="text-slate-100" size={23}/>
+            <FaInstagram className="text-slate-100" size={23} />
           </div>
           <div className="bg-[#414F22] hover:bg-[#586A31] flex h-9 items-center align-middle p-2 cursor-pointer">
-          <FaPaperPlane className="text-slate-100" size={18}/>
+            <FaPaperPlane className="text-slate-100" size={18} />
           </div>
         </div>
       </div>
@@ -61,73 +98,17 @@ const Footer = () => {
       <div className="md:flex md:justify-between md:items-start space-y-6 md:space-y-0 py-6">
         {/* NS Medical */}
         <div className="md:w-1/3">
-          <div className="flex justify-between items-center md:block">
-            <h2 className="font-semibold text-lg">Navigácia</h2>
-            <ul>
-            {medical}
-            </ul>
+          <div className="flex justify-between flex-col items-center md:block">
+            <h2 className="font-semibold text-lg">NS Medical</h2>
+            <p className="text-center text-sm">{medical}</p>
           </div>
         </div>
 
         {/* Navigácia */}
-        <div className="md:w-1/3">
-          <div className="flex justify-between items-center md:block">
-            <h2 className="font-semibold text-lg">Navigácia</h2>
-            {!isDesktop && (
-              <button
-                className="text-gray-500"
-                onClick={() => setNavigationOpen(!isNavigationOpen)}
-              >
-                <span
-                  className={`transform ${
-                    isNavigationOpen ? "rotate-180" : ""
-                  }`}
-                >
-                  ▼
-                </span>
-              </button>
-            )}
-          </div>
-          <ul
-            className={`${
-              isNavigationOpen ? "block" : "hidden"
-            } mt-2 space-y-1 text-sm text-gray-700`}
-          >
-            {navigacia.map((page, index) => (
-              <li key={index}>{page}</li>
-            ))}
-          </ul>
-        </div>
+        {renderSection("Navigácia", isNavigationOpen, setNavigationOpen, navigacia)}
 
         {/* Kurzy */}
-        <div className="md:w-1/3">
-          <div className="flex justify-between items-center md:block">
-            <h2 className="font-semibold text-lg">Kurzy</h2>
-            {!isDesktop && (
-              <button
-                className="text-gray-500"
-                onClick={() => setCoursesOpen(!isCoursesOpen)}
-              >
-                <span
-                  className={`transform ${
-                    isCoursesOpen ? "rotate-180" : ""
-                  }`}
-                >
-                  ▼
-                </span>
-              </button>
-            )}
-          </div>
-          <ul
-            className={`${
-              isCoursesOpen ? "block" : "hidden"
-            } mt-2 space-y-1 text-sm text-gray-700`}
-          >
-            {kurzy.map((page, index) => (
-              <li key={index}>{page}</li>
-            ))}
-          </ul>
-        </div>
+        {renderSection("Kurzy", isCoursesOpen, setCoursesOpen, kurzy)}
 
         {/* Kontakt */}
         <div className="md:w-1/3">
@@ -137,11 +118,14 @@ const Footer = () => {
               <button
                 className="text-gray-500"
                 onClick={() => setContactOpen(!isContactOpen)}
+                aria-label="Kontakt toggle"
               >
                 <span
-                  className={`transform ${isContactOpen ? "rotate-180" : ""}`}
+                  className={`transform transition-transform duration-300 ${
+                    isContactOpen ? "rotate-180" : "rotate-0"
+                  }`}
                 >
-                  ▼
+                  <FaChevronDown />
                 </span>
               </button>
             )}
@@ -155,13 +139,12 @@ const Footer = () => {
             <li>Email: {kontakt.email}</li>
           </ul>
         </div>
-
-        {/* Autorské práva */}
       </div>
-      <div className="flex flex-row justify-between text-sm text-gray-700 px-10">
-          <p>© 2024 Autorské práva vyhradené.</p>
-          <p>Ochrana osobných údajov</p>
-        </div>
+
+      <div className="flex flex-col md:flex-row items-center justify-between text-sm text-gray-700 px-10">
+        <p>© 2024 Autorské práva vyhradené.</p>
+        <p>Ochrana osobných údajov</p>
+      </div>
     </footer>
   );
 };

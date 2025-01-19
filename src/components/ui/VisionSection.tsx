@@ -1,57 +1,97 @@
+import { useState, useRef } from "react";
+import { useMediaQuery } from "react-responsive";
 
 const VisionMissionSection = () => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const isMobile = useMediaQuery({ query: "(max-width: 640px)" });
+  const touchStartX = useRef(0);
+  const touchEndX = useRef(0);
+
+  const slides = [
+    {
+      title: "Pacient ako stredobod starostlivosti",
+      text: "Veríme, že každý pacient je jedinečný. Našou víziou je naučiť odborníkov v zubnom lekárstve, aby sa pozerali za hranice zubov a sústredili sa na človeka ako celok."
+    },
+    {
+      title: "Vzdelávanie založené na dôkazoch",
+      text: "Naše kurzy sú postavené na pevných základoch vedy a výskumu. Neustále sledujeme nové poznatky, aby sme mohli vzdelávať odborníkov na základe aktuálnych dôkazov."
+    },
+    {
+      title: "Dostupné špecializované vzdelávanie",
+      text: "Ako jediný špecialista v orofaciálnej bolesti, dysfunkcii a spánkovej medicíne, chceme priblížiť túto problematiku odborníkom na Slovensku."
+    },
+    {
+      title: "Podpora a dlhodobý rozvoj odborníkov",
+      text: "Nejde len o kurzy – ide o budovanie komunity odborníkov. Víziou je vytvoriť priestor, kde môžu profesionáli rásť a učiť sa."
+    }
+  ];
+
+  const handleNext = () => {
+    setCurrentSlide((prev) => (prev + 1) % slides.length);
+  };
+
+  const handlePrev = () => {
+    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+  };
+
+  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    touchEndX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    const diff = touchStartX.current - touchEndX.current;
+    if (diff > 50) {
+      // Swipe left
+      handleNext();
+    } else if (diff < -50) {
+      // Swipe right
+      handlePrev();
+    }
+  };
+
   return (
-    <section className="bg-gray-50 py-16">
-      <div className="max-w-7xl mx-auto px-6 text-center">
-        <h2 className="text-3xl font-bold mb-12">Naša vízia a misia</h2>
-        <div className="relative flex flex-wrap justify-center items-center">
-          {/* Stredové logo */}
-          <div className="absolute bg-white rounded-full p-6 shadow-lg">
-            <div className="w-16 h-16 bg-green-700 rounded-full flex items-center justify-center">
-              <span className="text-white text-2xl font-bold">Y</span>
+    <section className="py-16">
+      <div className="max-w-7xl mx-auto px-6">
+        <h2 className="text-3xl font-bold mb-16 text-center">Naša vízia a misia</h2>
+        <div className="relative flex flex-wrap justify-center">
+          {isMobile ? (
+            <div
+              className="w-full relative"
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
+            >
+              <div className="bg-white rounded p-6 max-w-md mx-auto">
+                <h3 className="text-xl font-semibold mb-4">{slides[currentSlide].title}</h3>
+                <p className="text-gray-600">{slides[currentSlide].text}</p>
+              </div>
+              <div className="flex justify-between items-center mt-6">
+                <div className="flex mx-auto space-x-2">
+                  {slides.map((_, index) => (
+                    <div
+                      key={index}
+                      className={`h-2 w-2 rounded-full ${
+                        currentSlide === index ? "bg-green-700" : "bg-gray-300"
+                      }`}
+                    ></div>
+                  ))}
+                </div>
+              </div>
             </div>
-          </div>
-
-          {/* Čiary */}
-          <div className="absolute w-full h-full flex justify-center items-center">
-            <div className="absolute w-1/2 h-px bg-gray-300"></div>
-            <div className="absolute h-1/2 w-px bg-gray-300"></div>
-          </div>
-
-          {/* Boxy */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8 mt-20 sm:mt-24">
-            {/* Ľavý horný box */}
-            <div className="bg-white rounded-lg shadow-lg p-6 max-w-md">
-              <h3 className="text-xl font-semibold mb-4">Pacient ako stredobod starostlivosti</h3>
-              <p className="text-gray-600">
-                Veríme, že každý pacient je jedinečný. Našou víziou je naučiť odborníkov v zubnom lekárstve, aby sa pozerali za hranice zubov a sústredili sa na človeka ako celok.
-              </p>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8">
+              {slides.map((slide, index) => (
+                <div key={index} className="bg-white rounded p-6 max-w-md">
+                  <h3 className="text-xl font-semibold mb-4">{slide.title}</h3>
+                  <p className="text-gray-600">{slide.text}</p>
+                </div>
+              ))}
             </div>
-
-            {/* Ľavý dolný box */}
-            <div className="bg-white rounded-lg shadow-lg p-6 max-w-md">
-              <h3 className="text-xl font-semibold mb-4">Vzdelávanie založené na dôkazoch</h3>
-              <p className="text-gray-600">
-                Naše kurzy sú postavené na pevných základoch vedy a výskumu. Neustále sledujeme nové poznatky, aby sme mohli vzdelávať odborníkov na základe aktuálnych dôkazov.
-              </p>
-            </div>
-
-            {/* Pravý horný box */}
-            <div className="bg-white rounded-lg shadow-lg p-6 max-w-md">
-              <h3 className="text-xl font-semibold mb-4">Dostupné špecializované vzdelávanie</h3>
-              <p className="text-gray-600">
-                Ako jediný špecialista v orofaciálnej bolesti, dysfunkcii a spánkovej medicíne, chceme priblížiť túto problematiku odborníkom na Slovensku.
-              </p>
-            </div>
-
-            {/* Pravý dolný box */}
-            <div className="bg-white rounded-lg shadow-lg p-6 max-w-md">
-              <h3 className="text-xl font-semibold mb-4">Podpora a dlhodobý rozvoj odborníkov</h3>
-              <p className="text-gray-600">
-                Nejde len o kurzy – ide o budovanie komunity odborníkov. Víziou je vytvoriť priestor, kde môžu profesionáli rásť a učiť sa.
-              </p>
-            </div>
-          </div>
+          )}
         </div>
       </div>
     </section>

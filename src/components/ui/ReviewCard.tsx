@@ -10,7 +10,7 @@ type TestimonialProps = {
 
 const Testimonial: React.FC<TestimonialProps> = ({ name, role, photo, quote }) => {
   return (
-    <div className="max-w-md mx-auto bg-white rounded-lg p-4 flex flex-col gap-3">
+    <div className="max-w-md mx-auto bg-white rounded p-4 flex flex-col gap-6">
       <div className="flex items-center gap-2">
         <img
           src={photo}

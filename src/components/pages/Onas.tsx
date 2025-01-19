@@ -5,10 +5,10 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import ResponsiveSlider from "../ui/Slider";
 import EmployeeCard from "../ui/EmployeeCard";
 import Testimonial from "../ui/ReviewCard";
-import ButtonComponent from "../ui/Button";
 
 import { IoIosCheckmarkCircle } from "react-icons/io";
-
+import ArrowButton from "../ui/ArrowButton";
+import CourseCard from "../ui/CourseCard";
 
 interface TimelineItem {
   year: number;
@@ -92,27 +92,27 @@ const reviews = [
 const timelineData: TimelineItem[] = [
   {
     year: 2017,
-    text: "V roku 2017 som začala svoje štúdium stomatológie na univerzite a získala som prvé skúsenosti v odbore.",
+    text: "Špecializáciu v oblasti orofaciálnej bolesti, dysfunkcií, opotrebovania zubov a spánkovej medicíny som ukončila na ACTA (Academisch Centrum Tandheelkunde Amsterdam). V rovnakom roku som začala pracovať v Kliniek voor Parodontologie Amsterdam a súčasne som odštartovala doktorandské štúdium (PhD).",
     imageUrl: "/images/years_photo.png",
   },
   {
     year: 2022,
-    text: "Rok 2022 bol prelomový, dokončila som štúdium a začala pracovať v odbore stomatológie.",
+    text: "Špecializáciu v oblasti orofaciálnej bolesti, dysfunkcií, opotrebovania zubov a spánkovej medicíny som ukončila na ACTA (Academisch Centrum Tandheelkunde Amsterdam). V rovnakom roku som začala pracovať v Kliniek voor Parodontologie Amsterdam a súčasne som odštartovala doktorandské štúdium (PhD).",
     imageUrl: "/images/years_photo.png",
   },
   {
     year: 2023,
-    text: "Špecializáciu v oblasti orofaciálnej bolesti, dysfunkcií, opotrebovania zubov a spánkovej medicíny som ukončila na ACTA (Academisch Centrum Tandheelkunde Amsterdam).",
+    text: "Špecializáciu v oblasti orofaciálnej bolesti, dysfunkcií, opotrebovania zubov a spánkovej medicíny som ukončila na ACTA (Academisch Centrum Tandheelkunde Amsterdam). V rovnakom roku som začala pracovať v Kliniek voor Parodontologie Amsterdam a súčasne som odštartovala doktorandské štúdium (PhD).",
     imageUrl: "/images/years_photo.png",
   },
   {
     year: 2024,
-    text: "Pokračujem v doktorandskom štúdiu a pracujem na ďalších výskumných projektoch.",
+    text: "Špecializáciu v oblasti orofaciálnej bolesti, dysfunkcií, opotrebovania zubov a spánkovej medicíny som ukončila na ACTA (Academisch Centrum Tandheelkunde Amsterdam). V rovnakom roku som začala pracovať v Kliniek voor Parodontologie Amsterdam a súčasne som odštartovala doktorandské štúdium (PhD).",
     imageUrl: "/images/years_photo.png",
   },
   {
     year: 2025,
-    text: "Plánujem ďalšie rozšírenie odborných vedomostí a spoluprácu na medzinárodných projektoch.",
+    text: "Špecializáciu v oblasti orofaciálnej bolesti, dysfunkcií, opotrebovania zubov a spánkovej medicíny som ukončila na ACTA (Academisch Centrum Tandheelkunde Amsterdam). V rovnakom roku som začala pracovať v Kliniek voor Parodontologie Amsterdam a súčasne som odštartovala doktorandské štúdium (PhD).",
     imageUrl: "/images/years_photo.png",
   },
 ];
@@ -120,21 +120,21 @@ const timelineData: TimelineItem[] = [
 const parameters: Params[] = [
   {
     id: 1,
-    title: "Unikátna špecializácia a odborníci z celého sveta",
+    title: "Pacient na prvom mieste",
     description:
-      "Sme jediní, ktorí ponúkajú kurzy zamerané na orofaciálnu bolesť, dysfunkciu, opotrebovanie zubov a spánkovú medicínu. Na našich kurzoch sa stretnete s odborníkmi z celého sveta, ktorí vám prinesú jedinečné poznatky a skúsenosti.",
+      "Každé rozhodnutie musí byť v prospech pacienta. Vždy liečim človeka, nie iba zub. Pozerám sa za hranice ústnej dutiny a hľadám najlepšie riešenie pre daného človeka – aj keď to niekedy nemusí byť ideálne riešenie pre samotný zub. Tento prístup nielen zlepšuje starostlivosť, ale zároveň pomáha budovať dôveru medzi pacientom a odborníkom.",
   },
   {
     id: 2,
-    title: "Praktické zručnosti a zlepšenie komunikácie s pacientmi",
+    title: "Informácie založené na dôkazoch",
     description:
-      "Na kurzoch sa naučíte niečo, čo vám lekárska fakulta neposkytla. Získate schopnosti diagnostikovať bolesti, komunikovať s pacientmi efektívnejšie a zamerať sa na prevenciu a manažment problémov TMD a opotrebovanie zubov.",
+      "Na našich kurzoch poskytujeme len informácie, ktoré sú podložené vedeckými dôkazmi a dátami. Je pre mňa kľúčové, aby sme sa ako odborníci riadili vedou a prispôsobovali svoje postupy najnovším poznatkom. Táto filozofia ma poháňa aj pri mojom doktorandskom výskume. Verím, že len tak môžeme poskytovať pacientom tú najlepšiu možnú starostlivosť.",
   },
   {
     id: 3,
-    title: "Flexibilita, mentoring a podpora po absolvovaní kurzu",
+    title: "Podpora a flexibilita",
     description:
-      "Ponúkame flexibilitu vo výbere kurzov a osobný mentoring. Naši účastníci dostávajú podporu aj po absolvovaní kurzu, aby si osvojili praktické zručnosti a vedeli ich aplikovať vo svojej praxi.",
+      "Každý účastník našich kurzov si môže vybrať, čo mu vyhovuje – jeden konkrétny kurz alebo všetky štyri ako kompletný vzdelávací program. Navyše ponúkame mentorstvo – počas roka poskytujem účastníkom podporu pri riešení klinických prípadov z ich praxe. Táto flexibilita umožňuje každému študovať tempom, ktoré mu vyhovuje, a posúvať svoje znalosti na vyššiu úroveň.",
   },
 ];
 
@@ -169,56 +169,58 @@ const Onas = () => {
   const [activeYear, setActiveYear] = useState(timelineData[2]);
 
   return (
-    <div>
-      <section className="w-full px-20">
+    <div className="bg-[#F3F3F1]">
+      <section className="bg-white w-full px-20">
         <Breadcrumbs />
       </section>
 
       {/* Hero sekcia */}
-      <section className="relative w-full flex flex-col md:flex-row mx-auto my-16 gap-8 px-4">
-  {/* Textová časť */}
-  <div className="flex flex-col justify-center gap-4 md:w-1/2">
-    <h1 className="font-bold text-4xl">Naša misia</h1>
-    <p className="text-gray-700 leading-relaxed pb-8">
-      Naším cieľom je vzdelávať zubných lekárov, fyzioterapeutov a
-      študentov zubného lekárstva v špecializovaných oblastiach
-      orofaciálnej bolesti a dysfunkcie, opotrebovania zubov a spánkovej
-      medicíny. Ako jediný špecialista v týchto odboroch na Slovensku,
-      ktorý hovorí po slovensky, sa snažím sprístupniť pokročilé
-      vzdelávanie pre profesionálov u nás.
-    </p>
-    <ButtonComponent text={"Všetky naše kurzy"} />
-  </div>
+      <section className="bg-white relative w-full flex flex-col md:flex-row mx-auto py-16 gap-8 px-4">
+        {/* Textová časť */}
+        <div className="flex flex-col justify-center gap-4 md:w-1/2">
+          <h1 className="font-bold text-4xl">Naša misia</h1>
+          <p className="text-gray-700 leading-relaxed pb-8">
+            Naším cieľom je vzdelávať zubných lekárov, fyzioterapeutov a
+            študentov zubného lekárstva v špecializovaných oblastiach
+            orofaciálnej bolesti a dysfunkcie, opotrebovania zubov a spánkovej
+            medicíny. Ako jediný špecialista v týchto odboroch na Slovensku,
+            ktorý hovorí po slovensky, sa snažím sprístupniť pokročilé
+            vzdelávanie pre profesionálov u nás.
+          </p>
+          <div className="w-96">
+            <ArrowButton text="Všetky naše kurzy" />
+          </div>
+        </div>
 
-  {/* Obrázok a prekryté informácie */}
-  <div className="relative md:w-1/2">
-    <img
-      src="/images/about_hero.png"
-      alt="Profesionálna diskusia"
-      className="w-full rounded-lg shadow-md"
-    />
+        {/* Obrázok a prekryté informácie */}
+        <div className="relative md:w-1/2">
+          <img
+            src="/images/about_hero.png"
+            alt="Profesionálna diskusia"
+            className="w-full rounded-lg shadow-md"
+          />
 
-    {/* Prekryté informácie */}
-    <div className="absolute bottom-4 left-4 flex flex-col gap-4">
-      <div className="bg-white rounded-lg shadow-lg p-4 flex items-center gap-2">
-      <IoIosCheckmarkCircle className="text-orange-1" size={24}/>
+          {/* Prekryté informácie */}
+          <div className="absolute bottom-4 left-4 flex flex-col gap-4">
+            <div className="bg-white rounded-lg shadow-lg p-4 flex items-center gap-2">
+              <IoIosCheckmarkCircle className="text-orange-1" size={24} />
 
-        <p className="text-gray-700 font-medium">
-          Kvalitné školenia pre profesionálov
-        </p>
-      </div>
-      <div className="bg-white rounded-lg shadow-lg p-4 flex items-center gap-2">
-      <IoIosCheckmarkCircle className="text-orange-1" size={24}/>
+              <p className="text-gray-700 font-medium">
+                Kvalitné školenia pre profesionálov
+              </p>
+            </div>
+            <div className="bg-white rounded-lg shadow-lg p-4 flex items-center gap-2">
+              <IoIosCheckmarkCircle className="text-orange-1" size={24} />
 
-        <p className="text-gray-700 font-medium">
-          Roky praxe v oblasti stomatológie
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
+              <p className="text-gray-700 font-medium">
+                Roky praxe v oblasti stomatológie
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
 
-<section className="bg-green-7 flex flex-col mb-20 py-10">
+      <section className="bg-green-7 flex flex-col mb-20 py-10">
         <div className="flex flex-col md:flex-row justify-between text-slate-100 px-6 md:px-20">
           <div className="w-3/5 px-14">
             <h1 className="font-bold text-3xl">Naše hodnoty</h1>
@@ -227,26 +229,23 @@ const Onas = () => {
         <div className="over max-w-7xl mx-auto px-4">
           <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-8">
             {parameters.map((feature) => (
-              <div
-                key={feature.id}
-                className="bg-white p-6 rounded-lg shadow-md"
-              >
-                <div className="flex items-center space-x-4">
-                  <div className="bg-[#d6e2c7] text-[#38412b] w-12 h-12 flex items-center justify-center rounded-full text-lg font-bold">
-                    {feature.id < 10 ? `0${feature.id}` : feature.id}
-                  </div>
-                  <h3 className="text-lg font-semibold text-gray-800">
-                    {feature.title}
-                  </h3>
+              <div key={feature.id} className="bg-white p-6 rounded">
+              <div className="flex flex-col gap-4">
+                <div className="bg-[#d6e2c7] text-[#38412b] w-12 h-12 flex items-center justify-center rounded-full text-lg font-bold">
+                  {feature.id < 10 ? `0${feature.id}` : feature.id}
                 </div>
-                <p className="mt-4 text-gray-600">{feature.description}</p>
+                <h3 className="text-lg font-semibold text-gray-800">
+                  {feature.title}
+                </h3>
               </div>
+              <p className="mt-4 text-sm text-gray-600">{feature.description}</p>
+            </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="flex flex-col md:flex-row justify-between items-center py-16 px-4 md:px-20 bg-white">
+      <section className="flex flex-col md:flex-row justify-between items-center py-16 px-4 md:px-20">
         {/* Timeline Navigation for Mobile */}
         <div className="flex md:hidden justify-center gap-4 mb-8 w-full">
           {timelineData.map((item) => (
@@ -254,7 +253,7 @@ const Onas = () => {
               key={item.year}
               className={`font-semibold transition-all duration-500 ${
                 activeYear.year === item.year
-                  ? "text-[#1C2820] text-2xl border-[#1C2820]"
+                  ? "text-[#1C2820] text-3xl border-[#1C2820]"
                   : "text-gray-500 hover:text-gray-700"
               }`}
               onClick={() => setActiveYear(item)}
@@ -272,7 +271,7 @@ const Onas = () => {
           <h3 className="text-xl font-semibold mb-4 text-center md:text-left">
             {activeYear.year}
           </h3>
-          <p className="text-gray-600 leading-relaxed text-center md:text-left w-full md:w-[300px]">
+          <p className="text-gray-600 leading-relaxed text-center md:text-left w-full md:w-[540px]">
             {activeYear.text}
           </p>
         </div>
@@ -293,8 +292,8 @@ const Onas = () => {
               key={item.year}
               className={`font-semibold transition-all duration-500 ${
                 activeYear.year === item.year
-                  ? "text-[#1C2820] text-3xl"
-                  : "text-gray-500 hover:text-gray-700"
+                  ? "text-green-6 text-4xl"
+                  : "text-gray-5 hover:text-gray-700"
               }`}
               onClick={() => setActiveYear(item)}
             >
@@ -308,23 +307,23 @@ const Onas = () => {
         <VisionSection />
       </section>
 
-      <section className="slider bg-[#1C2820] py-16 px-16 flex flex-col gap-8">
+      <section className="slider py-8 px-16 flex flex-col gap-8">
         <div className="flex flex-row px-4 justify-between items-end">
           <div className="flex flex-col gap-2 w-3/5">
-            <h1 className="text-slate-100 text-3xl font-bold mb-4">
-              Objavte náš tím, ktorý <br /> Vás posunie vpred!
+            <h1 className="text-gray-950 text-3xl font-bold mb-4">
+            Skúsenosti, odbornosť a <br />vášeň pre vzdelávanie
             </h1>
           </div>
           <div className="flex flex-col w-auto gap-4">
             <div className="arrows flex flex-row gap-4">
               <div
-                className="bg-slate-100 rounded-lg p-4 cursor-pointer hover:bg-gray-200 transition"
+                className="bg-white rounded-lg p-4 cursor-pointer hover:bg-gray-200 transition"
                 onClick={handleEmployeesPrev}
               >
                 <FaArrowLeft />
               </div>
               <div
-                className="bg-slate-100 rounded-lg p-4 cursor-pointer hover:bg-gray-200 transition"
+                className="bg-white rounded-lg p-4 cursor-pointer hover:bg-gray-200 transition"
                 onClick={handleEmployeesNext}
               >
                 <FaArrowRight />
@@ -348,22 +347,40 @@ const Onas = () => {
         />
       </section>
 
+      {/* Sekcia s kurzom a popisom*/}
+      <section className="w-full bg-green-7 px-16 py-12 flex flex-row justify-between items-center">
+        <div className="w-1/2">
+          <CourseCard image={"/images/employee1.png"} title={"Spánková zubná medicína"} description={"Naše kurzy vám ponúkajú najnovšie vedecké poznatky v oblastiach orofaciálnej bolesti, dysfunkcie, opotrebovania zubov a spánkovej medicíny. S flexibilným prístupom k vzdelávaniu a podporou počas celého roka sa môžete stať odborníkom, ktorý poskytuje pacientom starostlivosť na najvyššej úrovni. Využite našu odbornú pomoc a rozšírte svoje schopnosti ešte dnes!"} date={"2025-01-20"} duration={"(8 hodín)"} capacity={"25"}/>
+        </div>
+        <div className="w-1/2 flex flex-col gap-4">
+          <h1 className="font-bold text-3xl text-white">
+          Získajte nové vedomosti ešte dnes!
+          </h1>
+          <p className="text-white leading-relaxed">
+          Naše kurzy vám ponúkajú najnovšie vedecké poznatky v oblastiach orofaciálnej bolesti, dysfunkcie, opotrebovania zubov a spánkovej medicíny. S flexibilným prístupom k vzdelávaniu a podporou počas celého roka sa môžete stať odborníkom, ktorý poskytuje pacientom starostlivosť na najvyššej úrovni. Využite našu odbornú pomoc a rozšírte svoje schopnosti ešte dnes!
+          </p>
+          <div className="w-96">
+          <ArrowButton text="Všetky naše kurzy" variant="white"/>
+          </div>
+        </div>
+      </section>
+
       {/* Hodnotenia kurzov */}
-      <section className="bg-gray-1 reviews flex flex-row py-16 px-16 gap-12">
-        <div className="flex flex-col gap-8 w-2/3">
-          <div className="flex flex-col justify-between items-start gap-10">
-            <h1 className="text-gray-800 text-3xl font-bold">
+      <section className="max-w-[1400px] mx-auto reviews flex flex-col lg:flex-row py-16 px-8 lg:px-16 gap-8 lg:gap-12">
+        <div className="flex flex-col gap-8 w-full lg:w-2/3">
+          <div className="flex flex-col lg:flex-col justify-between items-start lg:items-start gap-4">
+            <h1 className="text-gray-800 text-2xl lg:text-3xl font-bold">
               Hodnotenia kurzov
             </h1>
             <div className="arrows flex flex-row gap-4">
               <div
-                className="bg-gray-700 text-white rounded-lg p-4 cursor-pointer hover:bg-gray-600 transition"
+                className="bg-white rounded-lg p-4 cursor-pointer hover:bg-gray-200 transition"
                 onClick={handleReviewsPrev}
               >
                 <FaArrowLeft />
               </div>
               <div
-                className="bg-gray-700 text-white rounded-lg p-4 cursor-pointer hover:bg-gray-600 transition"
+                className="bg-white rounded-lg p-4 cursor-pointer hover:bg-gray-200 transition"
                 onClick={handleReviewsNext}
               >
                 <FaArrowRight />
@@ -386,11 +403,11 @@ const Onas = () => {
             visibleItems={2} // Napr. 2 viditeľné položky na desktopoch
           />
         </div>
-        <div className="">
+        <div className="flex justify-center items-start lg:items-end">
           <img
             src="/images/reviewsCitat.png"
             alt="quote"
-            className="w-[300px]"
+            className="w-[200px] lg:w-[300px]"
           />
         </div>
       </section>

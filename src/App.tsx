@@ -11,6 +11,7 @@ import Kontakt from "./components/pages/Kontakt";
 import Onas from "./components/pages/Onas";
 import KurzDetail from "./components/pages/CoursePage"; // Import stránky o kurze
 import Banner from "./components/ui/Banner";
+import BlogPage from "./components/pages/BlogPage";
 
 const App: React.FC = () => {
   return (
@@ -28,6 +29,7 @@ const App: React.FC = () => {
             <Route path="/blog" element={<Blog />} />
             <Route path="/contact" element={<Kontakt />} />
             <Route path="*" element={<Onas />} /> {/* 404 stránka */}
+            <Route path="blog/1" element={<BlogPage />} /> {/* 404 stránka */}
           </Routes>
         </main>
 

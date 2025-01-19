@@ -8,7 +8,7 @@ const Breadcrumbs = () => {
   const pathnames = location.pathname.split("/").filter((x) => x);
 
   return (
-    <nav className="text-sm text-gray-600" aria-label="Breadcrumbs">
+    <nav className="py-4 text-sm text-gray-600" aria-label="Breadcrumbs">
       <ol className="flex items-center space-x-2">
         {/* Hlavná stránka */}
         <li>

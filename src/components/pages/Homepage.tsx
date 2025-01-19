@@ -7,6 +7,7 @@ import ResponsiveSlider from "../ui/Slider";
 import { useRef } from "react";
 import ButtonComponent from "../ui/Button";
 import BlogPostCard from "../ui/BlogPost";
+import ArrowButton from "../ui/ArrowButton";
 
 // Typy pre dynamické dáta
 interface Feature {
@@ -72,31 +73,36 @@ const reviews = [
     name: "John Doe",
     role: "Software Engineer",
     photo: "/images/review_profile_photo.png",
-    quote: "This is a fantastic product! I love it so much! It made my life so much easier. Highly recommended! Thank you! And keep up the good work! I liked it so much that I bought it for my whole family!",
+    quote:
+      "This is a fantastic product! I love it so much! It made my life so much easier. Highly recommended! Thank you! And keep up the good work! I liked it so much that I bought it for my whole family!",
   },
   {
     name: "Jane Smith",
     role: "Product Manager",
     photo: "/images/review_profile_photo.png",
-    quote: "This is a fantastic product! I love it so much! It made my life so much easier. Highly recommended! Thank you! And keep up the good work! I liked it so much that I bought it for my whole family!",
+    quote:
+      "This is a fantastic product! I love it so much! It made my life so much easier. Highly recommended! Thank you! And keep up the good work! I liked it so much that I bought it for my whole family!",
   },
   {
     name: "Alex Johnson",
     role: "Designer",
     photo: "/images/review_profile_photo.png",
-    quote: "This is a fantastic product! I love it so much! It made my life so much easier. Highly recommended! Thank you! And keep up the good work! I liked it so much that I bought it for my whole family!",
+    quote:
+      "This is a fantastic product! I love it so much! It made my life so much easier. Highly recommended! Thank you! And keep up the good work! I liked it so much that I bought it for my whole family!",
   },
   {
     name: "James West",
     role: "Dentist",
     photo: "/images/review_profile_photo.png",
-    quote: "This is a fantastic product! I love it so much! It made my life so much easier. Highly recommended! Thank you! And keep up the good work! I liked it so much that I bought it for my whole family!",
+    quote:
+      "This is a fantastic product! I love it so much! It made my life so much easier. Highly recommended! Thank you! And keep up the good work! I liked it so much that I bought it for my whole family!",
   },
   {
     name: "Alex Johnson",
     role: "Worker",
     photo: "/images/review_profile_photo.png",
-    quote: "This is a fantastic product! I love it so much! It made my life so much easier. Highly recommended! Thank you! And keep up the good work! I liked it so much that I bought it for my whole family!",
+    quote:
+      "This is a fantastic product! I love it so much! It made my life so much easier. Highly recommended! Thank you! And keep up the good work! I liked it so much that I bought it for my whole family!",
   },
   // Add more testimonials as needed
 ];
@@ -104,38 +110,38 @@ const reviews = [
 const courses = [
   {
     image: "images/home_img_sec2.png",
-    title: "Course 1",
+    title: "DC/TMD Kalibračný kurz",
     description:
-      "Toto je popis kurzu v ktorom je opisane to co sa na kurze naucite a co sa na nom dozviete.",
+      "Kurz poskytuje prehľad o temporomandibulárnych poruchách (TMD), vrátane anatómie, etológie a diagnostiky. Účastníci získajú praktické skúsenosti s dotazníkmi, terapiami a efektívnou komunikáciou s pacientmi. Kurz poskytuje prehľad",
     date: "2025-01-20",
-    duration: "2 hours",
+    duration: "(9 hodín)",
     capacity: "30",
   },
   {
     image: "images/home_img_sec2.png",
-    title: "Course 2",
+    title: "Opotrebovanie zubov",
     description:
-      "Toto je popis kurzu v ktorom je opisane to co sa na kurze naucite a co sa na nom dozviete.",
+      "Kurz poskytuje hlboké znalosti o etológii opotrebovania zubov, klasifikácii a preventívnych stratégiách. Účastníci sa naučia, ako hodnotiť, diagnostikovať a manažovať opotrebovanie zubov a ponúknuť pacientom prispôsobenú starostlivosť.",
     date: "2025-01-25",
-    duration: "3 hours",
+    duration: "(9 hodín)",
     capacity: "25",
   },
   {
     image: "images/home_img_sec2.png",
-    title: "Course 3",
+    title: "Spánková zubná medicína",
     description:
-      "Toto je popis kurzu v ktorom je opisane to co sa na kurze naucite a co sa na nom dozviete.",
+      "Kurz ponúka pohľad na spánkové poruchy súvisiace so zubným lekárstvom, ako spánkové apnoe, bruxizmus a orofaciálnu bolesť. Účastníci sa naučia hodnotiť a manažovať tieto stavy so zameraním na praktické nástroje a starostlivosť o pacientov.",
     date: "2025-02-10",
-    duration: "1.5 hours",
+    duration: "(9 hodín)",
     capacity: "20",
   },
   {
     image: "images/home_img_sec2.png",
-    title: "Course 4",
+    title: "DC/TMD Kalibračný kurz",
     description:
-      "Toto je popis kurzu v ktorom je opisane to co sa na kurze naucite a co sa na nom dozviete.",
+      "Kurz poskytuje prehľad o temporomandibulárnych poruchách (TMD), vrátane anatómie, etológie a diagnostiky. Účastníci získajú praktické skúsenosti s dotazníkmi, terapiami a efektívnou komunikáciou s pacientmi. Kurz poskytuje prehľad",
     date: "2025-03-05",
-    duration: "4 hours",
+    duration: "(9 hodín)",
     capacity: "15",
   },
 ];
@@ -160,24 +166,19 @@ const HomePage: React.FC = () => {
   const handleReviewsNext = () => reviewsSliderRef.current?.handleNext();
 
   return (
-    <div className="bg-white">
+    <div className="bg-[#F3F3F1]">
       <section className="w-full px-20">
         <Breadcrumbs />
       </section>
 
       {/* Hero Section */}
-      <section className="max-w-7xl mx-auto px-4 py-16 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+      <section className="max-w-[1400px] mx-auto px-4 py-16 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
         <div>
           <h1 className="text-4xl font-bold text-gray-800 leading-tight">
             {heroContent.heading}
           </h1>
-          <p className="mt-4 text-gray-600">{heroContent.description}</p>
-          <a
-            href={heroContent.buttonLink}
-            className="mt-6 inline-block px-6 py-3 bg-[#38412b] text-white text-lg font-medium rounded-lg hover:bg-[#2f371f] transition"
-          >
-            {heroContent.buttonText}
-          </a>
+          <p className="mt-4 text-gray-600 pb-8">{heroContent.description}</p>
+          <ArrowButton text="Všetky naše kurzy" />
         </div>
         <div className="grid grid-cols-3 gap-4">
           {/* Prvý stĺpec */}
@@ -199,25 +200,22 @@ const HomePage: React.FC = () => {
             <img
               src="/images/Homepage_photo_2.png"
               alt="Image 3"
-              className="rounded h-full w-full object-cover"
+              className="rounded-lg h-full w-full object-cover"
             />
           </div>
         </div>
       </section>
 
       {/* Features Section */}
-      <section className="bg-gray-50 py-16">
+      <section className="max-w-[1400px] mx-auto py-16">
         <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-gray-800 text-center">
+          <h2 className="text-3xl font-bold text-gray-800">
             Prečo si vybrať nás?
           </h2>
-          <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-4">
             {features.map((feature) => (
-              <div
-                key={feature.id}
-                className="bg-white p-6 rounded-lg shadow-md"
-              >
-                <div className="flex items-center space-x-4">
+              <div key={feature.id} className="bg-white p-6 rounded">
+                <div className="flex flex-col gap-4">
                   <div className="bg-[#d6e2c7] text-[#38412b] w-12 h-12 flex items-center justify-center rounded-full text-lg font-bold">
                     {feature.id < 10 ? `0${feature.id}` : feature.id}
                   </div>
@@ -233,7 +231,7 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* tmavoyelena sekcia s kurzami */}
-      <section className="slider bg-[#1C2820] py-16 px-16 flex flex-col gap-12">
+      <section className="w-full mx-auto slider bg-[#1C2820] py-16 px-16 flex flex-col gap-12">
         <div className="flex flex-row justify-between items-start">
           <div className="flex flex-col gap-2 w-3/5">
             <h1 className="text-slate-100 text-3xl font-bold mb-4">
@@ -242,22 +240,25 @@ const HomePage: React.FC = () => {
           </div>
           <div className="flex flex-col w-2/5 gap-4">
             <p className="text-slate-100">
-              Pripojte sa k našim profesionálnym kurzom a získajte praktické zručnosti, aktuálne vedomosti a certifikáciu, ktorá vám otvorí nové možnosti. Naše kurzy sú navrhnuté tak, aby ste sa naučili konkrétne techniky a postupy, ktoré uplatníte.
+              Pripojte sa k našim profesionálnym kurzom a získajte praktické
+              zručnosti, aktuálne vedomosti a certifikáciu, ktorá vám otvorí
+              nové možnosti. Naše kurzy sú navrhnuté tak, aby ste sa naučili
+              konkrétne techniky a postupy, ktoré uplatníte.
             </p>
             <div className="arrows flex flex-row gap-4">
-            <div
-              className="bg-slate-100 rounded-lg p-4 cursor-pointer hover:bg-gray-200 transition"
-              onClick={handleCoursesPrev}
-            >
-              <FaArrowLeft />
+              <div
+                className="bg-slate-100 rounded-lg p-4 cursor-pointer hover:bg-gray-200 transition"
+                onClick={handleCoursesPrev}
+              >
+                <FaArrowLeft />
+              </div>
+              <div
+                className="bg-slate-100 rounded-lg p-4 cursor-pointer hover:bg-gray-200 transition"
+                onClick={handleCoursesNext}
+              >
+                <FaArrowRight />
+              </div>
             </div>
-            <div
-              className="bg-slate-100 rounded-lg p-4 cursor-pointer hover:bg-gray-200 transition"
-              onClick={handleCoursesNext}
-            >
-              <FaArrowRight />
-            </div>
-          </div>
           </div>
         </div>
 
@@ -276,11 +277,12 @@ const HomePage: React.FC = () => {
             />
           ))}
           visibleItems={3}
+          showPartialNext={true}
         />
       </section>
 
       {/* sekcia s fotkami na lavej strane */}
-      <section className="max-w-7xl mx-auto px-4 py-16 grid grid-cols-1 lg:grid-cols-2 gap-48 items-center">
+      <section className="max-w-[1400px] mx-auto px-16 py-16 grid grid-cols-1 lg:grid-cols-2 gap-48 items-center">
         {/* Prvý stĺpec */}
         <div className="flex flex-row gap-4">
           <img
@@ -300,31 +302,26 @@ const HomePage: React.FC = () => {
             {heroContent2.heading}
           </h1>
           <p className="mt-4 text-gray-600">{heroContent2.description}</p>
-          <a
-            href={heroContent2.buttonLink}
-            className="mt-6 inline-block px-6 py-3 bg-[#38412b] text-white text-lg font-medium rounded-lg hover:bg-[#2f371f] transition"
-          >
-            {heroContent2.buttonText}
-          </a>
+          <ArrowButton text="Viac o Nás" />
         </div>
       </section>
 
       {/* Hodnotenia kurzov */}
-      <section className="reviews flex flex-row py-16 px-16 gap-12">
-        <div className="flex flex-col gap-8 w-2/3">
-          <div className="flex flex-col justify-between items-start gap-10">
-            <h1 className="text-gray-800 text-3xl font-bold">
+      <section className="max-w-[1400px] mx-auto reviews flex flex-col lg:flex-row py-16 px-8 lg:px-16 gap-8 lg:gap-12">
+        <div className="flex flex-col gap-8 w-full lg:w-2/3">
+          <div className="flex flex-col lg:flex-col justify-between items-start lg:items-start gap-4">
+            <h1 className="text-gray-800 text-2xl lg:text-3xl font-bold">
               Hodnotenia kurzov
             </h1>
             <div className="arrows flex flex-row gap-4">
               <div
-                className="bg-gray-700 text-white rounded-lg p-4 cursor-pointer hover:bg-gray-600 transition"
+                className="bg-white rounded-lg p-4 cursor-pointer hover:bg-gray-200 transition"
                 onClick={handleReviewsPrev}
               >
                 <FaArrowLeft />
               </div>
               <div
-                className="bg-gray-700 text-white rounded-lg p-4 cursor-pointer hover:bg-gray-600 transition"
+                className="bg-white rounded-lg p-4 cursor-pointer hover:bg-gray-200 transition"
                 onClick={handleReviewsNext}
               >
                 <FaArrowRight />
@@ -347,38 +344,50 @@ const HomePage: React.FC = () => {
             visibleItems={2} // Napr. 2 viditeľné položky na desktopoch
           />
         </div>
-        <div className="">
-          <img src="/images/reviewsCitat.png" alt="quote" className="w-[300px]"/>
+        <div className="flex justify-center items-start lg:items-end">
+          <img
+            src="/images/reviewsCitat.png"
+            alt="quote"
+            className="w-[200px] lg:w-[300px]"
+          />
         </div>
       </section>
 
-      {/* Slider s hodnoteniami */}
-      <section className="flex flex-col gap-4">
+      {/* Sekcia s článkami */}
+      <section className="max-w-[1400px] mx-auto flex flex-col gap-4">
         <div className="flex flex-row justify-between">
-          <h1>Inšpirujte sa našimi článkami!</h1>
+          <h1 className="font-semibold text-4xl">
+            Inšpirujte sa našimi článkami!
+          </h1>
           <ButtonComponent text="Všetky články" />
         </div>
         <div className="flex flex-row justify-center gap-6">
-        <BlogPostCard
-            category={'Kategoria'}
-            imageUrl={'/images/banner_photo.png'}
-            title={'Ako správne vykonať dentálnu hygienu'}
-            description={'Naučte sa najlepšie postupy a techniky, aby ste svojim pacientom poskytli profesionálnu a dôklad...'}
-            date={'16.10.2024'}
+          <BlogPostCard
+            category={"Kategoria"}
+            imageUrl={"/images/banner_photo.png"}
+            title={"Ako správne vykonať dentálnu hygienu"}
+            description={
+              "Naučte sa najlepšie postupy a techniky, aby ste svojim pacientom poskytli profesionálnu a dôklad..."
+            }
+            date={"16.10.2024"}
           />
           <BlogPostCard
-            category={'Kategoria'}
-            imageUrl={'/images/banner_photo.png'}
-            title={'Ako správne vykonať dentálnu hygienu'}
-            description={'Naučte sa najlepšie postupy a techniky, aby ste svojim pacientom poskytli profesionálnu a dôklad...'}
-            date={'16.10.2024'}
+            category={"Kategoria"}
+            imageUrl={"/images/banner_photo.png"}
+            title={"Ako správne vykonať dentálnu hygienu"}
+            description={
+              "Naučte sa najlepšie postupy a techniky, aby ste svojim pacientom poskytli profesionálnu a dôklad..."
+            }
+            date={"16.10.2024"}
           />
           <BlogPostCard
-            category={'Kategoria'}
-            imageUrl={'/images/banner_photo.png'}
-            title={'Ako správne vykonať dentálnu hygienu'}
-            description={'Naučte sa najlepšie postupy a techniky, aby ste svojim pacientom poskytli profesionálnu a dôklad...'}
-            date={'16.10.2024'}
+            category={"Kategoria"}
+            imageUrl={"/images/banner_photo.png"}
+            title={"Ako správne vykonať dentálnu hygienu"}
+            description={
+              "Naučte sa najlepšie postupy a techniky, aby ste svojim pacientom poskytli profesionálnu a dôklad..."
+            }
+            date={"16.10.2024"}
           />
         </div>
       </section>
