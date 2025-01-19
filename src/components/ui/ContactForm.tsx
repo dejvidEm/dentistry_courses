@@ -1,4 +1,5 @@
 import { useState } from "react";
+import ArrowButton from "./ArrowButton";
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -24,7 +25,7 @@ const ContactForm = () => {
   };
 
   return (
-    <div className="max-w-3xl mx-auto p-6">
+    <div className="max-w-3xl mx-auto p-6 rounded-lg bg-[#F3F3F1]">
       <h2 className="text-2xl font-bold text-center mb-6">Kontaktujte nás</h2>
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -40,7 +41,7 @@ const ContactForm = () => {
               value={formData.name}
               onChange={handleChange}
               required
-              className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-green-500 focus:ring-green-500"
+              className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-green-500 focus:ring-green-500 h-12 p-4"
             />
           </div>
           <div>
@@ -55,7 +56,7 @@ const ContactForm = () => {
               value={formData.surname}
               onChange={handleChange}
               required
-              className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-green-500 focus:ring-green-500"
+              className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-green-500 focus:ring-green-500  h-12 p-4"
             />
           </div>
           <div>
@@ -70,7 +71,7 @@ const ContactForm = () => {
               value={formData.email}
               onChange={handleChange}
               required
-              className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-green-500 focus:ring-green-500"
+              className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-green-500 focus:ring-green-500  h-12 p-4"
             />
           </div>
           <div>
@@ -85,7 +86,7 @@ const ContactForm = () => {
               value={formData.phone}
               onChange={handleChange}
               required
-              className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-green-500 focus:ring-green-500"
+              className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-green-500 focus:ring-green-500  h-12 p-4"
             />
           </div>
         </div>
@@ -100,7 +101,7 @@ const ContactForm = () => {
             value={formData.message}
             onChange={handleChange}
             rows={4}
-            className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-green-500 focus:ring-green-500"
+            className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-green-500 focus:ring-green-500 h-28 p-4"
           />
         </div>
         <div className="flex items-start">
@@ -111,33 +112,14 @@ const ContactForm = () => {
             checked={formData.consent}
             onChange={handleChange}
             required
-            className="h-4 w-4 text-green-600 border-gray-300 rounded focus:ring-green-500"
+            className="h-4 w-4 text-green-600 border-gray-300 rounded focus:ring-green-500 p-4"
           />
           <label htmlFor="consent" className="ml-2 text-sm text-gray-700">
             Súhlasím so spracovaním svojich osobných údajov
           </label>
         </div>
-        <div className="text-center">
-          <button
-            type="submit"
-            className="inline-flex items-center px-6 py-3 text-white bg-green-600 hover:bg-green-700 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500"
-          >
-            Odoslať
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth="2"
-              stroke="currentColor"
-              className="w-5 h-5 ml-2"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M17.25 6.75L21 12m0 0l-3.75 5.25M21 12H3"
-              />
-            </svg>
-          </button>
+        <div className="flex justify-center">
+          <ArrowButton text="Odoslať správu"/>
         </div>
       </form>
     </div>
