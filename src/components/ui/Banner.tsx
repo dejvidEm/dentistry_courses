@@ -13,7 +13,7 @@ const Banner = () => {
         {/* Fotka */}
         <div className="mr-20">
             <img
-              src="/src/assets/banner_photo.png"
+              src="/images/banner_photo.png"
               alt="Image 1"
               className="w-64 rounded"
             />

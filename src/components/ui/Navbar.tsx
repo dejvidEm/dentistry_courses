@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import ButtonComponent from "./Button";
 import { IoChevronDown } from "react-icons/io5";
 
-
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -11,19 +10,20 @@ const Navbar: React.FC = () => {
     setIsOpen(!isOpen);
   };
 
+  // Hardcoded zoznam kurzov na dynamické vytváranie odkazov
+  const kurzyData = [
+    { id: "1", name: "Kurz 1" },
+    { id: "2", name: "Kurz 2" },
+  ];
+
   return (
     <nav className="bg-white mx-8 border-b-2 border-neutral-100">
       <div className="max-w-7xl mx-auto">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center">
-            
             <Link to="/">
-            <img
-              src="/logo.png"
-              alt="Logo"
-              className="h-10 w-14"
-            />
+              <img src="/logo.png" alt="Logo" className="h-10 w-14" />
             </Link>
           </div>
 
@@ -36,18 +36,15 @@ const Navbar: React.FC = () => {
               </Link>
               {/* Dropdown Menu */}
               <div className="absolute left-0 mt-2 w-40 bg-white shadow-lg rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                <Link
-                  to="/"
-                  className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
-                >
-                  Kurz 1
-                </Link>
-                <Link
-                  to="/"
-                  className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
-                >
-                  Kurz 2
-                </Link>
+                {kurzyData.map((kurz) => (
+                  <Link
+                    key={kurz.id}
+                    to={`/kurzy/${kurz.id}`}
+                    className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                  >
+                    {kurz.name}
+                  </Link>
+                ))}
               </div>
             </div>
             <Link to="/about" className="text-gray-700 hover:text-[#38412b]">
@@ -63,10 +60,8 @@ const Navbar: React.FC = () => {
 
           {/* Contact Button */}
           <div className="hidden md:block">
-            <Link
-              to="/contact"
-            >
-              <ButtonComponent text="Kontaktujte Nás"/>
+            <Link to="/contact">
+              <ButtonComponent text="Kontaktujte Nás" />
             </Link>
           </div>
 
@@ -102,12 +97,15 @@ const Navbar: React.FC = () => {
             <Link to="/" className="block text-gray-700 hover:text-[#38412b]">
               Domov
             </Link>
-            <Link to="/kurz1" className="block text-gray-700 hover:text-[#38412b]">
-              Kurz 1
-            </Link>
-            <Link to="/kurz2" className="block text-gray-700 hover:text-[#38412b]">
-              Kurz 2
-            </Link>
+            {kurzyData.map((kurz) => (
+              <Link
+                key={kurz.id}
+                to={`/kurzy/${kurz.id}`}
+                className="block text-gray-700 hover:text-[#38412b]"
+              >
+                {kurz.name}
+              </Link>
+            ))}
             <Link to="/about" className="block text-gray-700 hover:text-[#38412b]">
               O nás
             </Link>
@@ -117,9 +115,8 @@ const Navbar: React.FC = () => {
             <Link to="/contact" className="block text-gray-700 hover:text-[#38412b]">
               Kontakt
             </Link>
-            <Link
-              to="/contact">
-              <ButtonComponent text="Kontaktujte Nás"/>
+            <Link to="/contact">
+              <ButtonComponent text="Kontaktujte Nás" />
             </Link>
           </div>
         </div>

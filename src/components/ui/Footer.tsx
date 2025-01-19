@@ -44,7 +44,7 @@ const Footer = () => {
   return (
     <footer className="p-6">
       <div className="flex justify-between border-b-2 border-gray-100 py-4">
-        <img src="/src/assets/logo_footer.png" alt="logo" className="w-20"/>
+        <img src="/images/logo_footer.png" alt="logo" className="w-20"/>
         <div className="flex flex-row gap-2">
           <div className="bg-[#414F22] hover:bg-[#586A31] flex h-9 items-center align-middle p-2 cursor-pointer">
           <FaFacebook className="text-slate-100" size={20}/>

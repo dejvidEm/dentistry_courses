@@ -9,6 +9,7 @@ import Kurzy from "./components/pages/Kurzy";
 import Blog from "./components/pages/Blog";
 import Kontakt from "./components/pages/Kontakt";
 import Onas from "./components/pages/Onas";
+import KurzDetail from "./components/pages/CoursePage"; // Import stránky o kurze
 import Banner from "./components/ui/Banner";
 
 const App: React.FC = () => {
@@ -23,6 +24,7 @@ const App: React.FC = () => {
           <Routes>
             <Route path="/" element={<Homepage />} />
             <Route path="/kurzy" element={<Kurzy />} />
+            <Route path="/kurzy/:id" element={<KurzDetail />} /> {/* Dynamická trasa */}
             <Route path="/blog" element={<Blog />} />
             <Route path="/contact" element={<Kontakt />} />
             <Route path="*" element={<Onas />} /> {/* 404 stránka */}
@@ -30,7 +32,7 @@ const App: React.FC = () => {
         </main>
 
         {/* Footer */}
-        <Banner/>
+        <Banner />
         <Footer />
       </div>
     </Router>

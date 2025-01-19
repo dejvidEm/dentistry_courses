@@ -1,11 +1,103 @@
+import React, { useRef } from "react";
+import { Link } from "react-router-dom";
 import Breadcrumbs from "../ui/Breadcrumbs";
 import CourseCard from "../ui/CourseCard";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import ResponsiveSlider from "../ui/Slider";
+import Testimonial from "../ui/ReviewCard";
+
+const kurzyData = [
+  {
+    id: "1",
+    name: "Kurz 1",
+    image: "images/home_img_sec2.png",
+    description:
+      "Toto je popis kurzu v ktorom je opisane to co sa na kurze naucite a co sa na nom dozviete, pre podrobnejsie info si rozkliknite tento kurz a zistite co sa v nom vsetko naucite, ale ajtak sa musite prihlasit aby ste to zistili",
+    date: "2025-01-20",
+    duration: "2 hours",
+    capacity: "30",
+  },
+  {
+    id: "2",
+    name: "Kurz 2",
+    image: "images/home_img_sec2.png",
+    description:
+      "Toto je popis kurzu v ktorom je opisane to co sa na kurze naucite a co sa na nom dozviete, pre podrobnejsie info si rozkliknite tento kurz a zistite co sa v nom vsetko naucite, ale ajtak sa musite prihlasit aby ste to zistili",
+    date: "2025-01-25",
+    duration: "3 hours",
+    capacity: "25",
+  },
+  {
+    id: "3",
+    name: "Kurz 3",
+    image: "images/home_img_sec2.png",
+    description:
+      "Toto je popis kurzu v ktorom je opisane to co sa na kurze naucite a co sa na nom dozviete, pre podrobnejsie info si rozkliknite tento kurz a zistite co sa v nom vsetko naucite, ale ajtak sa musite prihlasit aby ste to zistili",
+    date: "2025-02-01",
+    duration: "4 hours",
+    capacity: "20",
+  },
+  {
+    id: "4",
+    name: "Kurz 4",
+    image: "images/home_img_sec2.png",
+    description:
+      "Toto je popis kurzu v ktorom je opisane to co sa na kurze naucite a co sa na nom dozviete, pre podrobnejsie info si rozkliknite tento kurz a zistite co sa v nom vsetko naucite, ale ajtak sa musite prihlasit aby ste to zistili",
+    date: "2025-02-01",
+    duration: "4 hours",
+    capacity: "20",
+  },
+];
+
+const reviews = [
+  {
+    name: "John Doe",
+    role: "Software Engineer",
+    photo: "/images/review_profile_photo.png",
+    quote: "This is a fantastic product! I love it so much! It made my life so much easier. Highly recommended! Thank you! And keep up the good work! I liked it so much that I bought it for my whole family!",
+  },
+  {
+    name: "Jane Smith",
+    role: "Product Manager",
+    photo: "/images/review_profile_photo.png",
+    quote: "This is a fantastic product! I love it so much! It made my life so much easier. Highly recommended! Thank you! And keep up the good work! I liked it so much that I bought it for my whole family!",
+  },
+  {
+    name: "Alex Johnson",
+    role: "Designer",
+    photo: "/images/review_profile_photo.png",
+    quote: "This is a fantastic product! I love it so much! It made my life so much easier. Highly recommended! Thank you! And keep up the good work! I liked it so much that I bought it for my whole family!",
+  },
+  {
+    name: "James West",
+    role: "Dentist",
+    photo: "/images/review_profile_photo.png",
+    quote: "This is a fantastic product! I love it so much! It made my life so much easier. Highly recommended! Thank you! And keep up the good work! I liked it so much that I bought it for my whole family!",
+  },
+  {
+    name: "Alex Johnson",
+    role: "Worker",
+    photo: "/images/review_profile_photo.png",
+    quote: "This is a fantastic product! I love it so much! It made my life so much easier. Highly recommended! Thank you! And keep up the good work! I liked it so much that I bought it for my whole family!",
+  },
+  // Add more testimonials as needed
+];
 
 const Kurzy: React.FC = () => {
+  // Referencie pre oba slidery
+    const reviewsSliderRef = useRef<{
+      handleNext: () => void;
+      handlePrev: () => void;
+    } | null>(null);
+  
+    // Funkcie na ovládanie review slideru
+    const handleReviewsPrev = () => reviewsSliderRef.current?.handlePrev();
+    const handleReviewsNext = () => reviewsSliderRef.current?.handleNext();
+
   return (
     <div className="bg-white">
       <section className="w-full px-20">
-        <Breadcrumbs/>
+        <Breadcrumbs />
       </section>
 
       {/* Hero Section */}
@@ -24,42 +116,64 @@ const Kurzy: React.FC = () => {
         </div>
       </section>
 
-      {/* Blog Section */}
+      {/* Kurzy Section */}
       <section>
         <div className="w-[1200px] mx-auto grid grid-cols-3 gap-8">
-          <CourseCard
-            image="src/assets/home_img_sec2.png"
-            title="Course 1"
-            description="Toto je popis kurzu v ktorom je opisane to co sa na kurze naucite a co sa na nom dozviete, pre podrobnejsie info si rozkliknite tento kurz a zistite co sa v nom vsetko naucite, ale ajtak sa musite prihlasit aby ste to zistili"
-            date="2025-01-20"
-            duration="2 hours"
-            capacity="30"
-          />
-          <CourseCard
-            image="src/assets/home_img_sec2.png"
-            title="Course 1"
-            description="Toto je popis kurzu v ktorom je opisane to co sa na kurze naucite a co sa na nom dozviete, pre podrobnejsie info si rozkliknite tento kurz a zistite co sa v nom vsetko naucite, ale ajtak sa musite prihlasit aby ste to zistili"
-            date="2025-01-20"
-            duration="2 hours"
-            capacity="30"
-          />
-          <CourseCard
-            image="src/assets/home_img_sec2.png"
-            title="Course 1"
-            description="Toto je popis kurzu v ktorom je opisane to co sa na kurze naucite a co sa na nom dozviete, pre podrobnejsie info si rozkliknite tento kurz a zistite co sa v nom vsetko naucite, ale ajtak sa musite prihlasit aby ste to zistili"
-            date="2025-01-20"
-            duration="2 hours"
-            capacity="30"
-          />
+          {kurzyData.map((kurz) => (
+            <Link to={`/kurzy/${kurz.id}`} key={kurz.id}>
+              <CourseCard
+                image={kurz.image}
+                title={kurz.name}
+                description={kurz.description}
+                date={kurz.date}
+                duration={kurz.duration}
+                capacity={kurz.capacity}
+              />
+            </Link>
+          ))}
+        </div>
+      </section>
 
-          <CourseCard
-            image="src/assets/home_img_sec2.png"
-            title="Course 1"
-            description="Toto je popis kurzu v ktorom je opisane to co sa na kurze naucite a co sa na nom dozviete, pre podrobnejsie info si rozkliknite tento kurz a zistite co sa v nom vsetko naucite, ale ajtak sa musite prihlasit aby ste to zistili"
-            date="2025-01-20"
-            duration="2 hours"
-            capacity="30"
+      {/* Hodnotenia kurzov */}
+      <section className="reviews flex flex-row py-16 px-16 gap-12">
+        <div className="flex flex-col gap-8 w-2/3">
+          <div className="flex flex-col justify-between items-start gap-10">
+            <h1 className="text-gray-800 text-3xl font-bold">
+              Hodnotenia kurzov
+            </h1>
+            <div className="arrows flex flex-row gap-4">
+              <div
+                className="bg-gray-700 text-white rounded-lg p-4 cursor-pointer hover:bg-gray-600 transition"
+                onClick={handleReviewsPrev}
+              >
+                <FaArrowLeft />
+              </div>
+              <div
+                className="bg-gray-700 text-white rounded-lg p-4 cursor-pointer hover:bg-gray-600 transition"
+                onClick={handleReviewsNext}
+              >
+                <FaArrowRight />
+              </div>
+            </div>
+          </div>
+
+          {/* Slider s hodnoteniami */}
+          <ResponsiveSlider
+            ref={reviewsSliderRef}
+            items={reviews.map((review, index) => (
+              <Testimonial
+                key={index}
+                name={review.name}
+                role={review.role}
+                photo={review.photo}
+                quote={review.quote}
+              />
+            ))}
+            visibleItems={2} // Napr. 2 viditeľné položky na desktopoch
           />
+        </div>
+        <div className="">
+          <img src="/images/reviewsCitat.png" alt="quote" className="w-[300px]"/>
         </div>
       </section>
     </div>
