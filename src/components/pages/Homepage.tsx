@@ -1,8 +1,6 @@
 import { FaArrowRight, FaArrowLeft } from "react-icons/fa6";
 
 import CourseCard from "../ui/CourseCard";
-import Slider from "../ui/Slider";
-import SecondSlider from "../ui/SecondSlider";
 import Testimonial from "../ui/ReviewCard";
 import Breadcrumbs from "../ui/Breadcrumbs";
 import ResponsiveSlider from "../ui/Slider";
