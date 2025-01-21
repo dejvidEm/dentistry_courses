@@ -174,7 +174,7 @@ const HomePage: React.FC = () => {
       {/* Hero Section */}
       <section className="max-w-[1400px] mx-auto px-4 py-16 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
         <div>
-          <h1 className="text-4xl font-bold text-gray-800 leading-tight">
+          <h1 className="text-[58px] font-bold text-gray-800 leading-tight">
             {heroContent.heading}
           </h1>
           <p className="mt-4 text-gray-600 pb-8">{heroContent.description}</p>
@@ -200,7 +200,7 @@ const HomePage: React.FC = () => {
             <img
               src="/images/Homepage_photo_2.png"
               alt="Image 3"
-              className="rounded-lg h-full w-full object-cover"
+              className="rounded h-full w-full object-cover"
             />
           </div>
         </div>
