@@ -47,6 +47,36 @@ const kurzyData = [
     duration: "4 hours",
     capacity: "20",
   },
+  {
+    id: "4",
+    name: "Kurz 4",
+    image: "images/home_img_sec2.png",
+    description:
+      "Toto je popis kurzu v ktorom je opisane to co sa na kurze naucite a co sa na nom dozviete, pre podrobnejsie info si rozkliknite tento kurz a zistite co sa v nom vsetko naucite, ale ajtak sa musite prihlasit aby ste to zistili",
+    date: "2025-02-01",
+    duration: "4 hours",
+    capacity: "20",
+  },
+  {
+    id: "4",
+    name: "Kurz 4",
+    image: "images/home_img_sec2.png",
+    description:
+      "Toto je popis kurzu v ktorom je opisane to co sa na kurze naucite a co sa na nom dozviete, pre podrobnejsie info si rozkliknite tento kurz a zistite co sa v nom vsetko naucite, ale ajtak sa musite prihlasit aby ste to zistili",
+    date: "2025-02-01",
+    duration: "4 hours",
+    capacity: "20",
+  },
+  {
+    id: "4",
+    name: "Kurz 4",
+    image: "images/home_img_sec2.png",
+    description:
+      "Toto je popis kurzu v ktorom je opisane to co sa na kurze naucite a co sa na nom dozviete, pre podrobnejsie info si rozkliknite tento kurz a zistite co sa v nom vsetko naucite, ale ajtak sa musite prihlasit aby ste to zistili",
+    date: "2025-02-01",
+    duration: "4 hours",
+    capacity: "20",
+  },
 ];
 
 const reviews = [
@@ -54,59 +84,68 @@ const reviews = [
     name: "John Doe",
     role: "Software Engineer",
     photo: "/images/review_profile_photo.png",
-    quote: "This is a fantastic product! I love it so much! It made my life so much easier. Highly recommended! Thank you! And keep up the good work! I liked it so much that I bought it for my whole family!",
+    quote:
+      "This is a fantastic product! I love it so much! It made my life so much easier. Highly recommended! Thank you! And keep up the good work! I liked it so much that I bought it for my whole family!",
   },
   {
     name: "Jane Smith",
     role: "Product Manager",
     photo: "/images/review_profile_photo.png",
-    quote: "This is a fantastic product! I love it so much! It made my life so much easier. Highly recommended! Thank you! And keep up the good work! I liked it so much that I bought it for my whole family!",
+    quote:
+      "This is a fantastic product! I love it so much! It made my life so much easier. Highly recommended! Thank you! And keep up the good work! I liked it so much that I bought it for my whole family!",
   },
   {
     name: "Alex Johnson",
     role: "Designer",
     photo: "/images/review_profile_photo.png",
-    quote: "This is a fantastic product! I love it so much! It made my life so much easier. Highly recommended! Thank you! And keep up the good work! I liked it so much that I bought it for my whole family!",
+    quote:
+      "This is a fantastic product! I love it so much! It made my life so much easier. Highly recommended! Thank you! And keep up the good work! I liked it so much that I bought it for my whole family!",
   },
   {
     name: "James West",
     role: "Dentist",
     photo: "/images/review_profile_photo.png",
-    quote: "This is a fantastic product! I love it so much! It made my life so much easier. Highly recommended! Thank you! And keep up the good work! I liked it so much that I bought it for my whole family!",
+    quote:
+      "This is a fantastic product! I love it so much! It made my life so much easier. Highly recommended! Thank you! And keep up the good work! I liked it so much that I bought it for my whole family!",
   },
   {
     name: "Alex Johnson",
     role: "Worker",
     photo: "/images/review_profile_photo.png",
-    quote: "This is a fantastic product! I love it so much! It made my life so much easier. Highly recommended! Thank you! And keep up the good work! I liked it so much that I bought it for my whole family!",
+    quote:
+      "This is a fantastic product! I love it so much! It made my life so much easier. Highly recommended! Thank you! And keep up the good work! I liked it so much that I bought it for my whole family!",
   },
+
   // Add more testimonials as needed
 ];
 
 const Kurzy: React.FC = () => {
   // Referencie pre oba slidery
-    const reviewsSliderRef = useRef<{
-      handleNext: () => void;
-      handlePrev: () => void;
-    } | null>(null);
-  
-    // Funkcie na ovládanie review slideru
-    const handleReviewsPrev = () => reviewsSliderRef.current?.handlePrev();
-    const handleReviewsNext = () => reviewsSliderRef.current?.handleNext();
+  const reviewsSliderRef = useRef<{
+    handleNext: () => void;
+    handlePrev: () => void;
+  } | null>(null);
+
+  // Funkcie na ovládanie review slideru
+  const handleReviewsPrev = () => reviewsSliderRef.current?.handlePrev();
+  const handleReviewsNext = () => reviewsSliderRef.current?.handleNext();
 
   return (
     <div className="bg-[#F3F3F1]">
-      <section className="w-full bg-white px-20">
-        <Breadcrumbs />
+      {/* Breadcrumbs Section */}
+      <section className="w-full bg-white px-4 lg:px-20">
+        <div className="max-w-[1400px] mx-auto px-4 lg:px-24">
+          <Breadcrumbs />
+        </div>
       </section>
 
       {/* Hero Section */}
-      <section className="w-full bg-white mx-auto py-24">
-        <div className="flex flex-row justify-between px-20">
-          <h1 className="text-5xl">
+      <section className="w-full bg-white mx-auto py-12 lg:py-24">
+        <div className="max-w-[1400px] mx-auto flex flex-col lg:flex-row items-center lg:items-start justify-between px-4 lg:px-[88px] gap-8">
+          <h1 className="text-[36px] lg:text-[58px] leading-none font-semibold text-center lg:text-left">
             Posuňte kariéru s <br /> našimi kurzami
           </h1>
-          <p className="w-[500px]">
+          <p className="text-[#736E69] text-center lg:text-left lg:w-[500px]">
             Naša ponuka kurzov je určená pre tých, ktorí chcú získať nové
             zručnosti, zlepšiť svoju kariéru a neustále sa rozvíjať. Bez ohľadu
             na to, či ste začiatočník alebo skúsený odborník, naše kurzy vám
@@ -117,8 +156,8 @@ const Kurzy: React.FC = () => {
       </section>
 
       {/* Kurzy Section */}
-      <section className="max-w-[1400px] mx-auto py-8 px-8 lg:px-16">
-        <div className="mx-auto grid grid-cols-3 gap-8">
+      <section className="max-w-[1400px] mx-auto py-8 px-4 lg:px-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
           {kurzyData.map((kurz) => (
             <Link to={`/kurzy/${kurz.id}`} key={kurz.id}>
               <CourseCard
@@ -135,13 +174,13 @@ const Kurzy: React.FC = () => {
       </section>
 
       {/* Hodnotenia kurzov */}
-      <section className="max-w-[1400px] mx-auto reviews flex flex-col lg:flex-row py-16 px-8 lg:px-16 gap-8 lg:gap-12">
+      <section className="max-w-[1400px] mx-auto flex flex-col lg:flex-row py-16 px-4 lg:px-16 gap-8 lg:gap-12">
         <div className="flex flex-col gap-8 w-full lg:w-2/3">
-          <div className="flex flex-col lg:flex-col justify-between items-start lg:items-start gap-4">
-            <h1 className="text-gray-800 text-2xl lg:text-3xl font-bold">
+          <div className="flex flex-col lg:flex-row justify-between items-center lg:items-start gap-4">
+            <h1 className="text-gray-800 text-2xl lg:text-3xl font-bold text-center lg:text-left">
               Hodnotenia kurzov
             </h1>
-            <div className="arrows flex flex-row gap-4">
+            <div className="arrows flex-row gap-4 justify-center hidden md:flex lg:justify-start">
               <div
                 className="bg-white rounded-lg p-4 cursor-pointer hover:bg-gray-200 transition"
                 onClick={handleReviewsPrev}
@@ -169,14 +208,14 @@ const Kurzy: React.FC = () => {
                 quote={review.quote}
               />
             ))}
-            visibleItems={2} // Napr. 2 viditeľné položky na desktopoch
+            visibleItems={2} // 1 viditeľná položka na mobiloch
           />
         </div>
-        <div className="flex justify-center items-start lg:items-end">
+        <div className="flex justify-center items-center lg:items-end">
           <img
             src="/images/reviewsCitat.png"
             alt="quote"
-            className="w-[200px] lg:w-[300px]"
+            className="w-full sm:w-[200px] lg:w-[300px]"
           />
         </div>
       </section>

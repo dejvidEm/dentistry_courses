@@ -36,7 +36,7 @@ const Breadcrumbs = () => {
                 ) : (
                   <Link
                     to={routeTo}
-                    className="text-blue-500 hover:underline transition"
+                    className="hover:underline transition"
                   >
                     {decodeURIComponent(value)}
                   </Link>

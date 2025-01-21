@@ -153,28 +153,24 @@ const images = [
     id: 1,
     image: "/images/image2.png",
   },
-
 ];
 
-
 const KurzDetail: React.FC = () => {
+  const coursesSliderRef = useRef<{
+    handleNext: () => void;
+    handlePrev: () => void;
+  } | null>(null);
+  const reviewsSliderRef = useRef<{
+    handleNext: () => void;
+    handlePrev: () => void;
+  } | null>(null);
 
-    const coursesSliderRef = useRef<{
-      handleNext: () => void;
-      handlePrev: () => void;
-    } | null>(null);
-    const reviewsSliderRef = useRef<{
-      handleNext: () => void;
-      handlePrev: () => void;
-    } | null>(null);
-  
-    // Funkcie na ovládanie kurzového slideru
-    const handleCoursesPrev = () => coursesSliderRef.current?.handlePrev();
-    const handleCoursesNext = () => coursesSliderRef.current?.handleNext();
+  // Funkcie na ovládanie kurzového slideru
+  const handleCoursesPrev = () => coursesSliderRef.current?.handlePrev();
+  const handleCoursesNext = () => coursesSliderRef.current?.handleNext();
 
-    const handleReviewsPrev = () => reviewsSliderRef.current?.handlePrev();
-    const handleReviewsNext = () => reviewsSliderRef.current?.handleNext();
-
+  const handleReviewsPrev = () => reviewsSliderRef.current?.handlePrev();
+  const handleReviewsNext = () => reviewsSliderRef.current?.handleNext();
 
   const { id } = useParams<{ id: string }>();
   const kurz = kurzyData.find((kurz) => kurz.id === id);
@@ -190,41 +186,39 @@ const KurzDetail: React.FC = () => {
       </section>
 
       {/* Hero Section */}
-      <section className="flex flex-col md:flex-row items-start md:items-center gap-8 px-6 md:px-20 py-10">
-        <div className="flex-1">
+      <section className="flex flex-col md:flex-row items-start md:items-center gap-24 px-6 md:px-20 py-10">
+        <div className="flex-1 max-w-[600px]">
           <h1 className="text-4xl md:text-7xl font-bold mb-4">{kurz.name}</h1>
-          <p className="text-gray-600 mb-4">{kurz.description}</p>
+          <p className="text-gray-600 mb-8">{kurz.description}</p>
           <ArrowButton text="Prihlásiť sa" />
-          <p className="text-2xl font-semibold">
+          <p className="text-2xl font-semibold py-10">
             <span className="text-gray-5 text-[20px]">Cena:</span>{" "}
             <span className="text-3xl text-green-6">{kurz.price}€</span>
           </p>
         </div>
-        <div className="relative flex-1 w-full md:w-1/2">
+        <div className="relative flex-1 w-1/3 md:w-1/3">
           <img
             src={kurz.courseImage}
             alt={kurz.name}
             className="w-full h-auto rounded-lg object-cover"
           />
-          <div className="absolute flex flex-row w-[95%] left-1/2 transform -translate-x-1/2 justify-between bottom-4 bg-white bg-opacity-95 p-4 rounded-md shadow-md">
-            <div>
-              <h2 className="font-bold text-lg">Datum</h2>
+          <div className="absolute flex flex-row w-[95%] left-1/2 transform -translate-x-1/2 bottom-4 bg-white bg-opacity-95 p-4 rounded-md shadow-md">
+            <div className="mr-auto">
+              <h2 className="font-bold text-lg">Dátum:</h2>
+              <p className="text-sm text-gray-700 font-semibold">{kurz.date}</p>
+            </div>
+            <div className="border-l border-gray-300 h-auto mx-4"></div>
+            <div className="mr-auto">
+              <h2 className="font-bold text-lg">Lokácia:</h2>
               <p className="text-sm text-gray-700 font-semibold">
-                Dátum: {kurz.date}
+                {kurz.location}
               </p>
             </div>
             <div className="border-l border-gray-300 h-auto mx-4"></div>
-            <div>
-              <h2 className="font-bold text-lg">Location</h2>
+            <div className="mr-auto">
+              <h2 className="font-bold text-lg">Kapacita:</h2>
               <p className="text-sm text-gray-700 font-semibold">
-                Miesto: {kurz.location}
-              </p>
-            </div>
-            <div className="border-l border-gray-300 h-auto mx-4"></div>
-            <div>
-              <h2 className="font-bold text-lg">Capacita</h2>
-              <p className="text-sm text-gray-700 font-semibold">
-                Kapacita: {kurz.capacity}
+                {kurz.capacity}
               </p>
             </div>
           </div>
@@ -280,7 +274,7 @@ const KurzDetail: React.FC = () => {
             praktické znalosti potrebné na správnu diagnostiku a liečbu TMD.
           </p>
           <div className="w-96">
-          <ArrowButton text="Prihlásiť sa" />
+            <ArrowButton text="Prihlásiť sa" />
           </div>
           <div className="flex flex-row gap-4 mt-4">
             <img
@@ -342,10 +336,7 @@ const KurzDetail: React.FC = () => {
                   <span className="text-gray-600">12:30 - 13:30</span>
                 </div>
                 <div className="flex justify-between">
-                  <p>
-                    Manažment temp. porúch, poradenstvo, životný
-                    štýl
-                  </p>
+                  <p>Manažment temp. porúch, poradenstvo, životný štýl</p>
                   <span className="text-gray-600">13:30 - 15:00</span>
                 </div>
                 <div className="flex justify-between">
@@ -353,9 +344,7 @@ const KurzDetail: React.FC = () => {
                   <span className="text-gray-600">15:00 - 15:30</span>
                 </div>
                 <div className="flex justify-between">
-                  <p>
-                    Nácvik komunikácie s pacientami a komunikačné stratégie
-                  </p>
+                  <p>Nácvik komunikácie s pacientami a komunikačné stratégie</p>
                   <span className="text-gray-600">15:30 - 17:00</span>
                 </div>
               </div>
@@ -368,22 +357,37 @@ const KurzDetail: React.FC = () => {
       <section className="max-w-[1400px] mx-auto flex flex-row gap-16 pb-24">
         {/* nadpis a citat */}
         <div className="w-1/3 flex flex-col justify-between">
-            <h1 className="font-bold text-3xl">Lektorka kurzu - <br />odborníčka na TMD</h1>
-            <div className="bg-white rounded flex flex-col p-4 gap-2">
-              <BiSolidQuoteAltLeft className="text-orange-1" size={30}/>
-              <p>Mojím cieľom je poskytnúť účastníkom nielen teoretické vedomosti, ale aj reálne nástroje, ktoré môžu aplikovať v každodennej praxi.</p>
-            </div>
+          <h1 className="font-bold text-3xl">
+            Lektorka kurzu - <br />
+            odborníčka na TMD
+          </h1>
+          <div className="bg-white rounded flex flex-col p-4 gap-2">
+            <BiSolidQuoteAltLeft className="text-orange-1" size={30} />
+            <p>
+              Mojím cieľom je poskytnúť účastníkom nielen teoretické vedomosti,
+              ale aj reálne nástroje, ktoré môžu aplikovať v každodennej praxi.
+            </p>
+          </div>
         </div>
 
         {/* fotka */}
         <div className="w-56">
-            <img src="/images/employee1.png" alt="Lektorka kurzu" className="w-56"/>
+          <img
+            src="/images/employee1.png"
+            alt="Lektorka kurzu"
+            className="w-56"
+          />
         </div>
 
         {/* About */}
         <div className="w-1/3 flex flex-col justify-end">
-            <h2 className="font-bold text-xl">— MDDr. Natália Sládečková MSc</h2>
-            <p>S odbornými skúsenosťami v oblasti orofaciálnej bolesti a dysfunkcií, lektorka, zubná lekárka a gnátologička, pôsobí v Amsterdame a zdieľa svoje znalosti v diagnostike a liečbe TMD s účastníkmi.</p>
+          <h2 className="font-bold text-xl">— MDDr. Natália Sládečková MSc</h2>
+          <p>
+            S odbornými skúsenosťami v oblasti orofaciálnej bolesti a
+            dysfunkcií, lektorka, zubná lekárka a gnátologička, pôsobí v
+            Amsterdame a zdieľa svoje znalosti v diagnostike a liečbe TMD s
+            účastníkmi.
+          </p>
         </div>
       </section>
 
@@ -391,13 +395,16 @@ const KurzDetail: React.FC = () => {
       <section className="hidden lg:flex flex-row justify-between px-10">
         <div className="flex flex-col gap-8 w-1/2">
           <h1 className="text-4xl font-bold">Často kladené otázky</h1>
-          <p className="w-[400px]">Máte otázky? Možno tu nájdete odpovede na niektoré z vašich otázok. Ak nie, neváhajte nás kontaktovať prostredníctvom formulára!</p>
+          <p className="w-[400px]">
+            Máte otázky? Možno tu nájdete odpovede na niektoré z vašich otázok.
+            Ak nie, neváhajte nás kontaktovať prostredníctvom formulára!
+          </p>
           <div className="w-96">
-          <ArrowButton text="Kontaktujte Nás" />
+            <ArrowButton text="Kontaktujte Nás" />
           </div>
         </div>
         <div className="w-1/2">
-          <Faq/>
+          <Faq />
         </div>
       </section>
 
@@ -405,7 +412,7 @@ const KurzDetail: React.FC = () => {
         <div className="flex flex-row justify-between items-start">
           <div className="flex flex-col gap-2 w-3/5">
             <h1 className="text-gray-950 text-3xl font-bold">
-            Momentky z nášich kurzov
+              Momentky z nášich kurzov
             </h1>
           </div>
           <div className="flex flex-col gap-4">

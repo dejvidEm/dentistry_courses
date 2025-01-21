@@ -2,14 +2,14 @@ import ArrowButton from "./ArrowButton";
 
 const Banner = () => {
   return (
-    <div className="bg-[#1C2820] flex flex-col lg:flex-row lg:justify-between p-10">
+    <div className="bg-[#1C2820] flex flex-col lg:flex-row lg:justify-between p-4 md:p-16">
       {/* Text a button */}
-      <div className="lg:max-w-[600px] mb-5 lg:mb-0">
+      <div className="lg:max-w-[600px] mb-8 lg:mb-0">
         <h1 className="text-3xl text-slate-100 mb-4">Máte akékoľvek otázky?</h1>
-        <p className="text-lg text-slate-100 mb-4">
+        <p className="text- md:text-sm text-slate-100 max-w-[400px] mb-8">
           Vyplňte formulár a naši odborníci sa s vami čoskoro spoja, aby vám poskytli všetky potrebné informácie.
         </p>
-        <ArrowButton text="Napíšte Nám" variant="white"/>
+        <ArrowButton text="Napíšte nám" variant="white"/>
       </div>
 
       {/* Fotka */}
@@ -17,7 +17,7 @@ const Banner = () => {
         <img
           src="/images/banner_photo.png"
           alt="Image 1"
-          className="w-64 rounded"
+          className="w-full md:w-64 rounded"
         />
       </div>
     </div>

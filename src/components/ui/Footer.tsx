@@ -15,7 +15,7 @@ const Footer: React.FC = () => {
   const medical =
     "Poskytujeme vzdelávanie, ktoré pomáha zubným profesionálom zlepšovať starostlivosť o pacienta. Posúvame zubné lekárstvo vpred vďaka odbornosti, flexibilite a podpore.";
   const navigacia: string[] = ["Úvod", "O nás", "Služby", "Kurzy", "Kontakt"];
-  const kurzy: string[] = ["Kurz 1", "Kurz 2", "Kurz 3"];
+  const kurzy: string[] = ["DC/TMD Kalibračný kurz", "Opotrebovanie zubov", "Spánková zubná medicína", "Estetická stomatológia"];
   const kontakt: Kontakt = {
     phone: "+421 123 456 789",
     email: "info@dentalklinika.sk",
@@ -95,12 +95,12 @@ const Footer: React.FC = () => {
         </div>
       </div>
 
-      <div className="md:flex md:justify-between md:items-start space-y-6 md:space-y-0 py-6">
+      <div className="md:flex md:justify-between md:items-start space-y-6 md:space-y-0 py-6 px-10">
         {/* NS Medical */}
-        <div className="md:w-1/3">
+        <div className="md:w-2/3">
           <div className="flex justify-between flex-col items-center md:block">
             <h2 className="font-semibold text-lg">NS Medical</h2>
-            <p className="text-center text-sm">{medical}</p>
+            <p className="text-center w-1/2 md:text-left text-sm">{medical}</p>
           </div>
         </div>
 

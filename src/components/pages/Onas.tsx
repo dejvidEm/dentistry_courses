@@ -170,16 +170,18 @@ const Onas = () => {
 
   return (
     <div className="bg-[#F3F3F1]">
-      <section className="bg-white w-full px-20">
-        <Breadcrumbs />
+      <section className="w-full bg-white px-4 lg:px-20">
+        <div className="max-w-[1600px] mx-auto px-4 lg:px-24">
+          <Breadcrumbs />
+        </div>
       </section>
 
       {/* Hero sekcia */}
-      <section className="bg-white relative w-full flex flex-col md:flex-row mx-auto py-16 gap-8 px-4">
+      <section className="bg-white px-6 md:px-48 relative w-full flex flex-col md:flex-row mx-auto py-16 pb-24 gap-8">
         {/* Textová časť */}
-        <div className="flex flex-col justify-center gap-4 md:w-1/2">
-          <h1 className="font-bold text-4xl">Naša misia</h1>
-          <p className="text-gray-700 leading-relaxed pb-8">
+        <div className="flex flex-col justify-center gap-4 w-full md:w-1/2 text-center md:text-left">
+          <h1 className="font-bold text-3xl md:text-[58px] pb-2">Naša misia</h1>
+          <p className="text-gray-700 leading-relaxed pb-8 max-w-[550px]">
             Naším cieľom je vzdelávať zubných lekárov, fyzioterapeutov a
             študentov zubného lekárstva v špecializovaných oblastiach
             orofaciálnej bolesti a dysfunkcie, opotrebovania zubov a spánkovej
@@ -187,13 +189,13 @@ const Onas = () => {
             ktorý hovorí po slovensky, sa snažím sprístupniť pokročilé
             vzdelávanie pre profesionálov u nás.
           </p>
-          <div className="w-96">
+          <div className="w-full md:w-96 mx-auto md:mx-0">
             <ArrowButton text="Všetky naše kurzy" />
           </div>
         </div>
 
         {/* Obrázok a prekryté informácie */}
-        <div className="relative md:w-1/2">
+        <div className="relative w-full md:w-1/2">
           <img
             src="/images/about_hero.png"
             alt="Profesionálna diskusia"
@@ -201,17 +203,15 @@ const Onas = () => {
           />
 
           {/* Prekryté informácie */}
-          <div className="absolute bottom-4 left-4 flex flex-col gap-4">
+          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 md:translate-x-0 md:left-4 flex flex-col gap-4">
             <div className="bg-white rounded-lg shadow-lg p-4 flex items-center gap-2">
               <IoIosCheckmarkCircle className="text-orange-1" size={24} />
-
               <p className="text-gray-700 font-medium">
                 Kvalitné školenia pre profesionálov
               </p>
             </div>
             <div className="bg-white rounded-lg shadow-lg p-4 flex items-center gap-2">
               <IoIosCheckmarkCircle className="text-orange-1" size={24} />
-
               <p className="text-gray-700 font-medium">
                 Roky praxe v oblasti stomatológie
               </p>
@@ -219,27 +219,32 @@ const Onas = () => {
           </div>
         </div>
       </section>
+      <section className="w-full relative mx-auto py-16">
+        {/* Tmavozelené pozadie */}
+        <div className="absolute top-0 left-0 w-full h-3/5 bg-green-7"></div>
 
-      <section className="bg-green-7 flex flex-col mb-20 py-10">
-        <div className="flex flex-col md:flex-row justify-between text-slate-100 px-6 md:px-20">
-          <div className="w-3/5 px-14">
-            <h1 className="font-bold text-3xl">Naše hodnoty</h1>
-          </div>
-        </div>
-        <div className="over max-w-7xl mx-auto px-4">
-          <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-8">
-            {parameters.map((feature) => (
-              <div key={feature.id} className="bg-white p-6 rounded">
-              <div className="flex flex-col gap-4">
-                <div className="bg-[#d6e2c7] text-[#38412b] w-12 h-12 flex items-center justify-center rounded-full text-lg font-bold">
-                  {feature.id < 10 ? `0${feature.id}` : feature.id}
+        {/* Obsah sekcie */}
+        <div className="relative z-10 max-w-7xl mx-auto px-4">
+          <h2 className="text-3xl font-bold text-slate-100">Naše hodnoty</h2>
+          <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-4">
+            {parameters.map((parameters) => (
+              <div key={parameters.id} className="bg-white p-6 rounded">
+                <div className="flex flex-col gap-4">
+                  <div className="bg-[#E6EDD5] text-[#38412b] w-20 h-20 flex z-10 items-center justify-center rounded-full text-lg font-bold">
+                    <div className="bg-[#D4E0B9] text-[#38412b] w-16 h-16 flex z-10 items-center justify-center rounded-full text-lg font-bold">
+                      <div className="bg-[#B8C895] text-[#38412b] w-12 h-12 z-20 flex items-center justify-center rounded-full text-lg font-bold">
+                        {parameters.id < 10
+                          ? `0${parameters.id}`
+                          : parameters.id}
+                      </div>
+                    </div>
+                  </div>
+                  <h3 className="text-lg font-semibold text-gray-800">
+                    {parameters.title}
+                  </h3>
                 </div>
-                <h3 className="text-lg font-semibold text-gray-800">
-                  {feature.title}
-                </h3>
+                <p className="mt-4 text-gray-600">{parameters.description}</p>
               </div>
-              <p className="mt-4 text-sm text-gray-600">{feature.description}</p>
-            </div>
             ))}
           </div>
         </div>
@@ -311,7 +316,8 @@ const Onas = () => {
         <div className="flex flex-row px-4 justify-between items-end">
           <div className="flex flex-col gap-2 w-3/5">
             <h1 className="text-gray-950 text-3xl font-bold mb-4">
-            Skúsenosti, odbornosť a <br />vášeň pre vzdelávanie
+              Skúsenosti, odbornosť a <br />
+              vášeň pre vzdelávanie
             </h1>
           </div>
           <div className="flex flex-col w-auto gap-4">
@@ -350,17 +356,31 @@ const Onas = () => {
       {/* Sekcia s kurzom a popisom*/}
       <section className="w-full bg-green-7 px-16 py-12 flex flex-row justify-between items-center">
         <div className="w-1/2">
-          <CourseCard image={"/images/employee1.png"} title={"Spánková zubná medicína"} description={"Naše kurzy vám ponúkajú najnovšie vedecké poznatky v oblastiach orofaciálnej bolesti, dysfunkcie, opotrebovania zubov a spánkovej medicíny. S flexibilným prístupom k vzdelávaniu a podporou počas celého roka sa môžete stať odborníkom, ktorý poskytuje pacientom starostlivosť na najvyššej úrovni. Využite našu odbornú pomoc a rozšírte svoje schopnosti ešte dnes!"} date={"2025-01-20"} duration={"(8 hodín)"} capacity={"25"}/>
+          <CourseCard
+            image={"/images/employee1.png"}
+            title={"Spánková zubná medicína"}
+            description={
+              "Naše kurzy vám ponúkajú najnovšie vedecké poznatky v oblastiach orofaciálnej bolesti, dysfunkcie, opotrebovania zubov a spánkovej medicíny. S flexibilným prístupom k vzdelávaniu a podporou počas celého roka sa môžete stať odborníkom, ktorý poskytuje pacientom starostlivosť na najvyššej úrovni. Využite našu odbornú pomoc a rozšírte svoje schopnosti ešte dnes!"
+            }
+            date={"2025-01-20"}
+            duration={"(8 hodín)"}
+            capacity={"25"}
+          />
         </div>
         <div className="w-1/2 flex flex-col gap-4">
           <h1 className="font-bold text-3xl text-white">
-          Získajte nové vedomosti ešte dnes!
+            Získajte nové vedomosti ešte dnes!
           </h1>
           <p className="text-white leading-relaxed">
-          Naše kurzy vám ponúkajú najnovšie vedecké poznatky v oblastiach orofaciálnej bolesti, dysfunkcie, opotrebovania zubov a spánkovej medicíny. S flexibilným prístupom k vzdelávaniu a podporou počas celého roka sa môžete stať odborníkom, ktorý poskytuje pacientom starostlivosť na najvyššej úrovni. Využite našu odbornú pomoc a rozšírte svoje schopnosti ešte dnes!
+            Naše kurzy vám ponúkajú najnovšie vedecké poznatky v oblastiach
+            orofaciálnej bolesti, dysfunkcie, opotrebovania zubov a spánkovej
+            medicíny. S flexibilným prístupom k vzdelávaniu a podporou počas
+            celého roka sa môžete stať odborníkom, ktorý poskytuje pacientom
+            starostlivosť na najvyššej úrovni. Využite našu odbornú pomoc a
+            rozšírte svoje schopnosti ešte dnes!
           </p>
           <div className="w-96">
-          <ArrowButton text="Všetky naše kurzy" variant="white"/>
+            <ArrowButton text="Všetky naše kurzy" variant="white" />
           </div>
         </div>
       </section>

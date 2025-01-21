@@ -27,9 +27,9 @@ const App: React.FC = () => {
             <Route path="/kurzy" element={<Kurzy />} />
             <Route path="/kurzy/:id" element={<KurzDetail />} /> {/* Dynamická trasa */}
             <Route path="/blog" element={<Blog />} />
+            <Route path="blog/:id" element={<BlogPage />} />
             <Route path="/contact" element={<Kontakt />} />
             <Route path="*" element={<Onas />} /> {/* 404 stránka */}
-            <Route path="blog/1" element={<BlogPage />} /> {/* 404 stránka */}
           </Routes>
         </main>
 
