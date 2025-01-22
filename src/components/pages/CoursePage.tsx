@@ -1,5 +1,5 @@
-import React, { useRef } from "react";
-import { useParams } from "react-router-dom";
+import React, { useEffect, useRef, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import Breadcrumbs from "../ui/Breadcrumbs";
 import CourseCard from "../ui/CourseCard";
 import ArrowButton from "../ui/ArrowButton";
@@ -8,6 +8,7 @@ import ResponsiveSlider from "../ui/Slider";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import Faq from "../ui/Faq";
 import { BiSolidQuoteAltLeft } from "react-icons/bi";
+import RegistrationModal from "../ui/Modal";
 
 interface Params {
   id: number;
@@ -32,7 +33,7 @@ const kurzyData = [
   },
   {
     id: "2",
-    name: "Kurz 2",
+    name: "Opotrebovanie zubov",
     category: "Kategória 2",
     description:
       "V tomto 9-hodinovom kurze začneme s anatómiou žuvacieho systému a rôznymi faktormi, ktoré prispievajú k vzniku temporomandibulárnych porúch (TMD). Podrobne sa budeme zaoberať etológiou TMD a diskutovať o typickom profile pacienta, identifikovaní rizikových faktorov a ochoreniach. Účastníci sa zoznámia s diagnostickými kritériami TMD, pričom sa zameriame na skrátenú verziu. ",
@@ -46,7 +47,7 @@ const kurzyData = [
   },
   {
     id: "3",
-    name: "Kurz 3",
+    name: "Spánková zubná medicína",
     category: "Kategória 3",
     description:
       "V tomto 9-hodinovom kurze začneme s anatómiou žuvacieho systému a rôznymi faktormi, ktoré prispievajú k vzniku temporomandibulárnych porúch (TMD). Podrobne sa budeme zaoberať etológiou TMD a diskutovať o typickom profile pacienta, identifikovaní rizikových faktorov a ochoreniach. Účastníci sa zoznámia s diagnostickými kritériami TMD, pričom sa zameriame na skrátenú verziu. ",
@@ -156,6 +157,20 @@ const images = [
 ];
 
 const KurzDetail: React.FC = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+
+  useEffect(() => {
+    // Stmavenie stránky pri otvorení modalu
+    if (isModalOpen) {
+      document.body.classList.add("modal-open");
+    } else {
+      document.body.classList.remove("modal-open");
+    }
+  }, [isModalOpen]);
+
   const coursesSliderRef = useRef<{
     handleNext: () => void;
     handlePrev: () => void;
@@ -190,7 +205,10 @@ const KurzDetail: React.FC = () => {
         <div className="flex-1 max-w-[600px]">
           <h1 className="text-4xl md:text-7xl font-bold mb-4">{kurz.name}</h1>
           <p className="text-gray-600 mb-8">{kurz.description}</p>
-          <ArrowButton text="Prihlásiť sa" />
+          <div onClick={openModal}>
+            <ArrowButton text="Prihlásiť sa"/>
+          </div>
+          <RegistrationModal isOpen={isModalOpen} onClose={closeModal} />
           <p className="text-2xl font-semibold py-10">
             <span className="text-gray-5 text-[20px]">Cena:</span>{" "}
             <span className="text-3xl text-green-6">{kurz.price}€</span>
@@ -239,7 +257,7 @@ const KurzDetail: React.FC = () => {
               pripojiť k našemu vzdelávaciemu programu.
             </p>
             <div className="w-96 text-gray-950">
-              <ArrowButton text="Kontaktujte nás" variant="white" />
+              <Link to="/contact"><ArrowButton text="Kontaktujte nás" variant="white" /></Link>
             </div>
           </div>
         </div>

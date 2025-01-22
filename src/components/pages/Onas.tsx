@@ -9,6 +9,7 @@ import Testimonial from "../ui/ReviewCard";
 import { IoIosCheckmarkCircle } from "react-icons/io";
 import ArrowButton from "../ui/ArrowButton";
 import CourseCard from "../ui/CourseCard";
+import { Link } from "react-router-dom";
 
 interface TimelineItem {
   year: number;
@@ -190,7 +191,7 @@ const Onas = () => {
             vzdelávanie pre profesionálov u nás.
           </p>
           <div className="w-full md:w-96 mx-auto md:mx-0">
-            <ArrowButton text="Všetky naše kurzy" />
+            <Link to="/kurzy"><ArrowButton text="Všetky naše kurzy" /></Link>
           </div>
         </div>
 
@@ -380,7 +381,7 @@ const Onas = () => {
             rozšírte svoje schopnosti ešte dnes!
           </p>
           <div className="w-96">
-            <ArrowButton text="Všetky naše kurzy" variant="white" />
+          <Link to="/kurzy"><ArrowButton text="Všetky naše kurzy" variant="white"/></Link>
           </div>
         </div>
       </section>

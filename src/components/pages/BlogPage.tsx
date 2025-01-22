@@ -3,6 +3,7 @@ import ArrowButton from "../ui/ArrowButton";
 import BlogPostCard from "../ui/BlogPost";
 import Breadcrumbs from "../ui/Breadcrumbs";
 import DentalCareTable from "../ui/tableBlog";
+import { Link } from "react-router-dom";
 
 const BlogPage = () => {
   return (
@@ -46,11 +47,11 @@ const BlogPage = () => {
         </div>
       </section>
 
-      <section className="w-[1600px] mx-auto flex flex-row justify-center bg-white mb-20">
+      <section className="mx-auto flex flex-row justify-center bg-white mb-20">
         <img
           src="/images/banerBlog.png"
           alt="banner"
-          className="w-[90%] h-full object-cover"
+          className="w-[1400px] md:w-[1200px] px-4 lg:px-2 mx-auto object-cover"
         />
       </section>
 
@@ -136,7 +137,7 @@ const BlogPage = () => {
             <h1 className="font-semibold text-4xl">
               Inšpirujte sa našimi <br /> článkami!
             </h1>
-            <ArrowButton text="Všetky Naše články" />
+            <Link to="/blog"><ArrowButton text="Všetky Naše články" /></Link>
           </div>
         </div>
         <div className="flex flex-row justify-center gap-6 max-w-[1200px] mx-auto">

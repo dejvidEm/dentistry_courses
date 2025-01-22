@@ -6,6 +6,7 @@ import ResponsiveSlider from "../ui/Slider";
 import { useRef } from "react";
 import BlogPostCard from "../ui/BlogPost";
 import ArrowButton from "../ui/ArrowButton";
+import { Link } from "react-router-dom";
 
 // Typy pre dynamické dáta
 interface Feature {
@@ -190,7 +191,7 @@ const HomePage: React.FC = () => {
             {heroContent.heading}
           </h1>
           <p className="mt-4 text-gray-600 pb-8">{heroContent.description}</p>
-          <ArrowButton text="Všetky naše kurzy" />
+          <Link to="/kurzy"><ArrowButton text="Všetky naše kurzy" /></Link>
         </div>
         <div className="grid grid-cols-3 gap-4">
           {/* Prvý stĺpec */}
@@ -319,7 +320,7 @@ const HomePage: React.FC = () => {
             {heroContent2.heading}
           </h1>
           <p className="mt-4 text-gray-600 pb-8">{heroContent2.description}</p>
-          <ArrowButton text="Zistite o Nás viac" />
+          <Link to="/about"><ArrowButton text="Zistite o Nás viac" /></Link>
         </div>
       </section>
 
@@ -377,7 +378,7 @@ const HomePage: React.FC = () => {
             <h1 className="font-semibold text-4xl">
               Inšpirujte sa našimi <br /> článkami!
             </h1>
-            <ArrowButton text="Všetky Naše články" />
+            <Link to="/blog"><ArrowButton text="Všetky Naše články" /></Link>
           </div>
         </div>
         <div className="flex flex-row justify-center gap-6 max-w-[1200px] mx-auto">

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import ArrowButton from "./ArrowButton";
 
 const Banner = () => {
@@ -9,7 +10,7 @@ const Banner = () => {
         <p className="text- md:text-sm text-slate-100 max-w-[400px] mb-8">
           Vyplňte formulár a naši odborníci sa s vami čoskoro spoja, aby vám poskytli všetky potrebné informácie.
         </p>
-        <ArrowButton text="Napíšte nám" variant="white"/>
+        <Link to="/contact"><ArrowButton text="Napíšte nám" variant="white"/></Link>
       </div>
 
       {/* Fotka */}
