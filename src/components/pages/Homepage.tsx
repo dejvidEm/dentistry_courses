@@ -4,7 +4,6 @@ import CourseCard from "../ui/CourseCard";
 import Testimonial from "../ui/ReviewCard";
 import ResponsiveSlider from "../ui/Slider";
 import { useRef } from "react";
-import ButtonComponent from "../ui/Button";
 import BlogPostCard from "../ui/BlogPost";
 import ArrowButton from "../ui/ArrowButton";
 
