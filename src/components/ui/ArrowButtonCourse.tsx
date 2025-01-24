@@ -27,16 +27,16 @@ const ArrowButtonCourse: React.FC<AnimatedButtonProps> = ({
                  before:rounded-md
                  before:inset-0 
                  before:bg-green-6 
-                 before:scale-x-[0.155] 
+                 before:scale-x-[0.175] 
                  before:origin-right
                  before:transition
                  before:duration-300
                  hover:before:scale-x-100
                  ${textColorClass}`}
     >
-      <LuCalendarDays className="z-20 flex-shrink-0 -ml-2 w-6 h-6" />
+      <LuCalendarDays className="z-20 flex-shrink-0 -ml-3 w-6 h-6" />
       <span
-        className={`relative text-sm md:text-base text-center ml-2 mr-auto`}
+        className={`relative text-sm md:text-base text-center ml-3 mr-auto`}
       >
         {text}
       </span>
