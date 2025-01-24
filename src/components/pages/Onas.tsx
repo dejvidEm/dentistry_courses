@@ -193,7 +193,7 @@ const handleScroll = () => {
 <section className="bg-white px-6 md:px-48 relative w-full flex flex-col md:flex-row mx-auto py-16 pb-24 gap-8">
   {/* Textová časť */}
   <div className="flex flex-col justify-center w-full md:w-1/2 text-left order-2 md:order-1">
-    <h1 className="font-bold text-3xl md:text-[58px] pb-2">Naša misia</h1>
+    <h1 className="font-bold text-3xl md:text-[58px] pb-4 md:pb-8">Naša misia</h1>
     <p className="text-gray-700 leading-relaxed pb-8 max-w-[550px]">
       Naším cieľom je vzdelávať zubných lekárov, fyzioterapeutov a
       študentov zubného lekárstva v špecializovaných oblastiach

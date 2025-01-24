@@ -27,42 +27,48 @@ const Navbar: React.FC = () => {
       <nav className="bg-white fixed top-0 left-0 w-full border-b-2 border-neutral-100 z-50">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center justify-between h-16">
-            {/* Logo */}
-            <div className="flex items-center">
-              <Link to="/" onClick={closeMenu}>
-                <img src="/images/logo.png" alt="Logo" className="h-10 w-14" />
-              </Link>
-            </div>
-
-            {/* Desktop Menu */}
-            <div className="hidden md:flex space-x-8">
-              <div className="relative group">
-                <Link to="/kurzy" className="text-gray-700 flex gap-1 items-center hover:text-[#38412b] focus:outline-none">
-                  Kurzy
-                  <IoChevronDown />
+            {/* Logo a odkazy */}
+            <div className="flex items-center space-x-8">
+              {/* Logo */}
+              <div className="flex items-center">
+                <Link to="/" onClick={closeMenu}>
+                  <img src="/images/logo.png" alt="Logo" className="h-10 w-14" />
                 </Link>
-                {/* Dropdown Menu */}
-                <div className="absolute left-0 mt-2 w-40 bg-white shadow-lg rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                  {kurzyData.map((kurz) => (
-                    <Link
-                      key={kurz.id}
-                      to={`/kurzy/${kurz.id}`}
-                      className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
-                    >
-                      {kurz.name}
-                    </Link>
-                  ))}
-                </div>
               </div>
-              <Link to="/about" className="text-gray-700 hover:text-[#38412b]">
-                O nás
-              </Link>
-              <Link to="/blog" className="text-gray-700 hover:text-[#38412b]">
-                Blog
-              </Link>
-              <Link to="/contact" className="text-gray-700 hover:text-[#38412b]">
-                Kontakt
-              </Link>
+
+              {/* Desktop Menu (Odkazy) */}
+              <div className="hidden md:flex space-x-8">
+                <div className="relative group">
+                  <Link
+                    to="/kurzy"
+                    className="text-gray-700 flex gap-1 items-center hover:text-[#38412b] focus:outline-none"
+                  >
+                    Kurzy
+                    <IoChevronDown />
+                  </Link>
+                  {/* Dropdown Menu */}
+                  <div className="absolute left-0 mt-2 w-40 bg-white shadow-lg rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                    {kurzyData.map((kurz) => (
+                      <Link
+                        key={kurz.id}
+                        to={`/kurzy/${kurz.id}`}
+                        className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                      >
+                        {kurz.name}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+                <Link to="/about" className="text-gray-700 hover:text-[#38412b]">
+                  O nás
+                </Link>
+                <Link to="/blog" className="text-gray-700 hover:text-[#38412b]">
+                  Blog
+                </Link>
+                <Link to="/contact" className="text-gray-700 hover:text-[#38412b]">
+                  Kontakt
+                </Link>
+              </div>
             </div>
 
             {/* Contact Button */}
@@ -96,16 +102,32 @@ const Navbar: React.FC = () => {
         }`}
       >
         <div className="px-4 pt-4 pb-3 space-y-3 sm:px-6">
-          <Link to="/about" className="block text-gray-700 text-xl hover:text-[#38412b]" onClick={closeMenu}>
+          <Link
+            to="/about"
+            className="block text-gray-700 text-xl hover:text-[#38412b]"
+            onClick={closeMenu}
+          >
             Kurzy
           </Link>
-          <Link to="/about" className="block text-gray-700 text-xl hover:text-[#38412b]" onClick={closeMenu}>
+          <Link
+            to="/about"
+            className="block text-gray-700 text-xl hover:text-[#38412b]"
+            onClick={closeMenu}
+          >
             O nás
           </Link>
-          <Link to="/blog" className="block text-gray-700 text-xl hover:text-[#38412b]" onClick={closeMenu}>
+          <Link
+            to="/blog"
+            className="block text-gray-700 text-xl hover:text-[#38412b]"
+            onClick={closeMenu}
+          >
             Blog
           </Link>
-          <Link to="/contact" className="block text-gray-700 text-xl hover:text-[#38412b] pb-8" onClick={closeMenu}>
+          <Link
+            to="/contact"
+            className="block text-gray-700 text-xl hover:text-[#38412b] pb-8"
+            onClick={closeMenu}
+          >
             Kontakt
           </Link>
           <Link to="/contact" onClick={closeMenu}>

@@ -236,7 +236,7 @@ const HomePage: React.FC = () => {
   ];
 
   return (
-    <div className="bg-[#F3F3F1]">
+    <div className="bg-[#F3F3F1] mt-16 md:mt-24">
       {/* Hero Section */}
 <section className="w-full bg-white mx-auto px-4 sm:px-16 md:px-32 py-8 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
   {/* Fotka pre mobilné zariadenia pred nadpisom */}
