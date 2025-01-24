@@ -425,7 +425,7 @@ const HomePage: React.FC = () => {
     <p className="text-slate-100 pb-8">
       Pripojte sa k našim profesionálnym kurzom a získajte praktické zručnosti, aktuálne vedomosti a certifikáciu, ktorá vám otvorí nové možnosti. Naše kurzy sú navrhnuté tak, aby ste sa naučili konkrétne techniky a postupy, ktoré uplatníte.
     </p>
-    <Link to="/blog">
+    <Link to="/kurzy">
       <ArrowButton text="Všetky naše kurzy" variant="white" />
     </Link>
 
