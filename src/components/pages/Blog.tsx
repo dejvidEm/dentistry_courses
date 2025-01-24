@@ -196,31 +196,31 @@ const Blog: React.FC = () => {
   return (
     <div className="bg-[#F3F3F1]">
       <section className="w-full bg-white px-4 lg:px-20">
-        <div className="max-w-[1400px] mx-auto px-4 lg:px-24">
-          <Breadcrumbs />
-        </div>
-      </section>
+  <div className="max-w-[1400px] mx-auto px-4 lg:px-20">
+    <Breadcrumbs />
+  </div>
+</section>
 
-      {/* Hero Section */}
-      <section className="w-full bg-white mx-auto py-10 lg:pt-24">
-        <div className="max-w-[1400px] mx-auto flex flex-col lg:flex-row items-center lg:items-start justify-between px-4 lg:px-[88px] gap-8">
-          <h1 className="text-[36px] w-full lg:text-[58px] leading-none font-semibold lg:text-left">
-            Objavte ďalšie <br /> vzdelávacie zdroje
-          </h1>
-          <p className="text-[#736E69] lg:text-left lg:w-[500px]">
-            Objavte užitočné tipy, aktuálne trendy a odborné poznatky zo sveta
-            stomatológie, ktoré vás posunú ďalej. Naše články sú plné inšpirácie
-            a praktických rád, ktoré využijete vo svojej praxi. Sledujte novinky
-            a rozvíjajte svoje schopnosti s nami!
-          </p>
-        </div>
-        <div className="max-w-[1400px] px-4 md:px-[88px] mt-16">
-          <CategoryFilter
-            categories={categories}
-            onSelectCategory={handleCategorySelect}
-          />
-        </div>
-      </section>
+{/* Hero Section */}
+<section className="w-full bg-white py-10 lg:pt-24">
+  <div className="max-w-[1400px] mx-auto flex flex-col lg:flex-row items-center lg:items-start justify-between px-4 lg:px-20 gap-8">
+    <h1 className="text-[36px] w-full lg:text-[58px] leading-none font-semibold lg:text-left">
+      Objavte ďalšie <br /> vzdelávacie zdroje
+    </h1>
+    <p className="text-[#736E69] lg:text-left lg:w-[500px]">
+      Objavte užitočné tipy, aktuálne trendy a odborné poznatky zo sveta
+      stomatológie, ktoré vás posunú ďalej. Naše články sú plné inšpirácie a
+      praktických rád, ktoré využijete vo svojej praxi. Sledujte novinky a
+      rozvíjajte svoje schopnosti s nami!
+    </p>
+  </div>
+  <div className="max-w-[1400px] mx-auto px-4 lg:px-20 mt-16">
+    <CategoryFilter
+      categories={categories}
+      onSelectCategory={handleCategorySelect}
+    />
+  </div>
+</section>
 
       {/* Blog Section */}
       <section className="max-w-[1400px] mx-auto px-4 sm:px-20 py-8">
