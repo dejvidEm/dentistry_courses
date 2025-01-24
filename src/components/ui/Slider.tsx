@@ -74,7 +74,7 @@ const ResponsiveSlider = forwardRef((props: SliderProps, ref) => {
     moveX.current = null;
   };
 
-  const partialVisibleWidth = showPartialNext ? 10 : 0; // Percentá viditeľného ďalšieho slideru
+  const partialVisibleWidth = window.innerWidth < 768 ? 10 : showPartialNext ? 10 : 0; // Na mobiloch zobrazujeme čiastočnú kartu
 
   return (
     <div
@@ -94,7 +94,8 @@ const ResponsiveSlider = forwardRef((props: SliderProps, ref) => {
           <div
             key={index}
             style={{
-              width: `${100 / itemsToShow - partialVisibleWidth / itemsToShow}%`,
+              width: `${
+100 / itemsToShow - (partialVisibleWidth / itemsToShow) * (window.innerWidth < 768 ? 0.5 : 1)}%`,
             }}
             className="flex-shrink-0 flex-row pr-2"
           >

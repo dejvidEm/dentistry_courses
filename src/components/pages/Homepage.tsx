@@ -6,6 +6,7 @@ import ResponsiveSlider from "../ui/Slider";
 import { useRef, useState } from "react";
 import ArrowButton from "../ui/ArrowButton";
 import { Link } from "react-router-dom";
+import BlogPostCard from "../ui/BlogPost";
 
 // Typy pre dynamické dáta
 interface Feature {
@@ -205,6 +206,18 @@ const HomePage: React.FC = () => {
     }
   };
 
+  const [activeKurzSlide, setActiveKurzSlide] = useState(0); // Rozlišujeme názov
+  const kurzSliderRef = useRef<HTMLDivElement | null>(null); // Rozlišujeme referenciu
+
+  const handleKurzScroll = () => {
+    if (kurzSliderRef.current) {
+      const scrollLeft = kurzSliderRef.current.scrollLeft;
+      const cardWidth = kurzSliderRef.current.offsetWidth;
+      const index = Math.round(scrollLeft / cardWidth);
+      setActiveKurzSlide(index);
+    }
+  };
+
   const blogPosts = [
     {
       id: 1,
@@ -350,8 +363,8 @@ const HomePage: React.FC = () => {
 </section>
 
       {/* tmavozelena sekcia s kurzami */}
-      <section className="w-full mx-auto slider bg-[#1C2820] py-16 px-16 flex flex-col gap-12">
-        <div className="flex max-w-[1600px] mx-auto flex-col justify-between items-start">
+      <section className="w-full mx-auto slider bg-[#1C2820] py-16 px-16 hidden md:flex flex-col gap-12">
+        <div className="flex max-w-[1400px] mx-auto flex-col justify-between items-start">
           <div className="flex flex-row pb-8">
             <div className="flex flex-col gap-2 w-3/5">
               <h1 className="text-slate-100 text-3xl font-bold mb-4">
@@ -395,11 +408,71 @@ const HomePage: React.FC = () => {
                 capacity={course.capacity}
               />
             ))}
-            visibleItems={4}
+            visibleItems={3}
             showPartialNext={true}
           />
         </div>
       </section>
+
+
+
+
+      <section className="bg-[#1C2820] w-full mx-auto py-16 block md:hidden">
+  <div className="max-w-7xl mx-auto px-4">
+    <h2 className="text-3xl font-bold text-slate-100 pb-4">
+      Objavte kurzy, ktoré <br /> Vás posunú vpred!
+    </h2>
+    <p className="text-slate-100 pb-8">
+      Pripojte sa k našim profesionálnym kurzom a získajte praktické zručnosti, aktuálne vedomosti a certifikáciu, ktorá vám otvorí nové možnosti. Naše kurzy sú navrhnuté tak, aby ste sa naučili konkrétne techniky a postupy, ktoré uplatníte.
+    </p>
+    <Link to="/blog">
+      <ArrowButton text="Všetky naše kurzy" variant="white" />
+    </Link>
+
+    {/* Slider pre mobilné zariadenia */}
+    <div
+      ref={kurzSliderRef}
+      className="mt-10 flex overflow-x-auto snap-x snap-mandatory space-x-4 scrollbar-hide md:hidden"
+      style={{ scrollSnapType: 'x mandatory' }}
+      onScroll={handleKurzScroll}
+    >
+      {courses.map((course, index) => (
+        <div
+          key={index}
+          className="w-[85%] flex-shrink-0 snap-center"
+          style={{ scrollSnapAlign: 'center' }}
+        >
+          <CourseCard
+            image={course.image}
+            title={course.title}
+            description={course.description}
+            date={course.date}
+            duration={course.duration}
+            capacity={course.capacity}
+          />
+        </div>
+      ))}
+    </div>
+
+    {/* Indikátory (pásiky) pre mobil */}
+    <div className="flex justify-center items-center mt-6 space-x-1 md:hidden">
+      {courses.map((_, index) => (
+        <div
+          key={index}
+          className={`h-2 rounded transition-all duration-300 ${
+            activeKurzSlide === index
+              ? "bg-gray-300 w-10" // Aktívny pásik: tmavší a dlhší
+              : "bg-[#38412b] w-4" // Neaktívne pásiky: kratšie a svetlejšie
+          }`}
+        ></div>
+      ))}
+    </div>
+  </div>
+</section>
+
+
+
+
 
       {/* sekcia s fotkami na lavej strane */}
       <section className="max-w-[1400px] mx-auto px-4 py-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -415,19 +488,24 @@ const HomePage: React.FC = () => {
   </div>
 
   {/* Prvý stĺpec - Fotka */}
-  <div className="flex justify-center lg:justify-start">
+  <div className="flex justify-center gap-4 lg:justify-start">
     <img
       src="/images/home_img_sec.png"
       alt="Image 1"
       className="rounded w-full lg:w-[300px]"
     />
+    <img
+      src="/images/home_img_sec2.png"
+      alt="Image 1"
+      className="rounded w-full lg:w-[300px] hidden md:block"
+    />
   </div>
 </section>
 
       {/* Hodnotenia kurzov */}
-      <section className="max-w-[1400px] mx-auto reviews flex flex-col lg:flex-row py-24 pb-32 px-8 gap-8 lg:gap-12">
+      <section className="max-w-[1600px] mx-auto reviews flex flex-col lg:flex-row py-24 pb-32 px-8 gap-8 lg:gap-12">
         <div className="flex flex-col gap-8 w-full lg:w-2/3">
-          <div className="flex flex-col lg:flex-col justify-between items-start lg:items-start gap-4">
+          <div className="flex flex-col lg:flex-col justify-between items-start lg:items-start gap-4 px-8">
             <h1 className="text-gray-800 text-2xl lg:text-3xl font-bold">
               Hodnotenia kurzov
             </h1>
@@ -473,53 +551,63 @@ const HomePage: React.FC = () => {
 
       {/* Sekcia s článkami */}
       <section className="w-full mx-auto py-16">
-      <div className="max-w-7xl mx-auto px-4">
-        <h2 className="text-3xl font-bold text-gray-800 pb-4">
-          Inšpirujte sa našimi článkami!
-        </h2>
-        <Link to="/blog">
+  <div className="max-w-7xl mx-auto px-4">
+    <h2 className="text-3xl font-bold text-gray-800 pb-4">
+      Inšpirujte sa našimi článkami!
+    </h2>
+    <Link to="/blog">
       <ArrowButton text="Všetky naše články" />
     </Link>
-        {/* Slider */}
-        <div
-          ref={blogSliderRef}
-          className="mt-10 flex overflow-x-auto snap-x snap-mandatory space-x-4 scrollbar-hide"
-          onScroll={handleBlogScroll}
-        >
-          {blogPosts.map((post) => (
-            <div
-              key={post.id}
-              className="bg-white p-6 rounded w-[85%] flex-shrink-0 snap-start"
-            >
-              <img
-                src={post.imageUrl}
-                alt={post.title}
-                className="w-full h-40 object-cover rounded"
-              />
-              <h3 className="text-lg font-semibold text-gray-800 mt-4">
-                {post.title}
-              </h3>
-              <p className="mt-2 text-gray-600">{post.description}</p>
-              <span className="text-sm text-gray-500">{post.date}</span>
-            </div>
-          ))}
-        </div>
 
-        {/* Indikátory (pásiky) */}
-        <div className="flex justify-center items-center mt-6 space-x-1">
-          {blogPosts.map((_, index) => (
-            <div
-              key={index}
-              className={`h-2 rounded transition-all duration-300 ${
-                activeBlogSlide === index
-                  ? "bg-[#38412b] w-10" // Aktívny pásik: tmavší a dlhší
-                  : "bg-gray-300 w-4" // Neaktívne pásiky: kratšie a svetlejšie
-              }`}
-            ></div>
-          ))}
+    {/* Slider pre mobilné zariadenia */}
+    <div
+      ref={blogSliderRef}
+      className="mt-10 flex overflow-x-auto snap-x snap-mandatory space-x-4 scrollbar-hide md:hidden"
+      onScroll={handleBlogScroll}
+    >
+      {blogPosts.map((post) => (
+        <div key={post.id} className="w-[85%] flex-shrink-0 snap-start">
+          <BlogPostCard
+            category={post.category}
+            imageUrl={post.imageUrl}
+            title={post.title}
+            description={post.description}
+            date={post.date}
+          />
         </div>
-      </div>
-    </section>
+      ))}
+    </div>
+
+    {/* Grid pre desktop */}
+    <div className="mt-10 grid-cols-1 md:grid-cols-3 gap-4 hidden md:grid">
+      {blogPosts.map((post) => (
+        <div key={post.id} className="">
+          <BlogPostCard
+            category={post.category}
+            imageUrl={post.imageUrl}
+            title={post.title}
+            description={post.description}
+            date={post.date}
+          />
+        </div>
+      ))}
+    </div>
+
+    {/* Indikátory (pásiky) pre mobil */}
+    <div className="flex justify-center items-center mt-6 space-x-1 md:hidden">
+      {blogPosts.map((_, index) => (
+        <div
+          key={index}
+          className={`h-2 rounded transition-all duration-300 ${
+            activeBlogSlide === index
+              ? "bg-[#38412b] w-10" // Aktívny pásik: tmavší a dlhší
+              : "bg-gray-300 w-4" // Neaktívne pásiky: kratšie a svetlejšie
+          }`}
+        ></div>
+      ))}
+    </div>
+  </div>
+</section>
     </div>
   );
 };

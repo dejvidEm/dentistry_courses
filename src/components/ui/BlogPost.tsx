@@ -15,7 +15,7 @@ const BlogPostCard: React.FC<BlogCardProps> = ({
   date,
 }) => {
   return (
-    <div className="max-w-sm bg-white rounded shadow-lg overflow-hidden">
+    <div className="max-w-sm bg-white rounded shadow-md overflow-hidden">
       <div className="relative">
         <img src={imageUrl} alt={title} className="w-full h-48 object-cover" />
         <span className="absolute top-3 left-3 bg-[#BC6C25] text-white text-sm px-3 py-1 rounded">

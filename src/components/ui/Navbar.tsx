@@ -103,7 +103,7 @@ const Navbar: React.FC = () => {
       >
         <div className="px-4 pt-4 pb-3 space-y-3 sm:px-6">
           <Link
-            to="/about"
+            to="/kurzy"
             className="block text-gray-700 text-xl hover:text-[#38412b]"
             onClick={closeMenu}
           >

@@ -10,6 +10,7 @@ import { IoIosCheckmarkCircle } from "react-icons/io";
 import ArrowButton from "../ui/ArrowButton";
 import CourseCard from "../ui/CourseCard";
 import { Link } from "react-router-dom";
+import BlogPostCard from "../ui/BlogPost";
 
 interface TimelineItem {
   year: number;
@@ -180,6 +181,46 @@ const handleScroll = () => {
     setActiveSlide(index);
   }
 };
+
+const [activeAboutSlide, setActiveAboutSlide] = useState(0); // Rozlišujeme názov
+  const aboutSliderRef = useRef<HTMLDivElement | null>(null); // Rozlišujeme referenciu
+
+  const handleAboutScroll = () => {
+    if (aboutSliderRef.current) {
+      const scrollLeft = aboutSliderRef.current.scrollLeft;
+      const cardWidth = aboutSliderRef.current.offsetWidth;
+      const index = Math.round(scrollLeft / cardWidth);
+      setActiveAboutSlide(index);
+    }
+  };
+
+  const aboutPosts = [
+    {
+      id: 1,
+      title: "Pacient ako stredobod starostlivosti",
+      description:
+        "Veríme, že každý pacient je jedinečný. Našou víziou je naučiť odborníkov v zubnom lekárstve, aby sa pozerali za hranice zubov a sústredili sa na človeka ako celok. Cieľom je poskytovať starostlivosť, ktorá je nielen kvalitná, ale aj individuálne prispôsobená potrebám pacienta."
+    },
+    {
+      id: 1,
+      title: "Vzdelávanie založené na dôkazoch",
+      description:
+        "Naše kurzy sú postavené na pevných základoch vedy a výskumu. Neustále sledujeme nové poznatky, aby sme mohli vzdelávať odborníkov na základe aktuálnych dôkazov. Našou víziou je prispievať k rozvoju zubného lekárstva, ktoré je moderné, presné a vedecky podložené."
+    },
+    {
+      id: 1,
+      title: "Dostupné špecializované vzdelávanie",
+      description:
+        "Ako jediný špecialista v orofaciálnej bolesti, dysfunkcii, opotrebovaní zubov a spánkovej medicíne, ktorý hovorí po slovensky, chceme priblížiť túto problematiku odborníkom na Slovensku.  Víziou je rozširovať znalosti a zlepšovať zdravotnú starostlivosť,aby boli tieto oblasti lepšie pochopené."
+    },
+    {
+      id: 1,
+      title: "Podpora a dlhodobý rozvoj odborníkov",
+      description:
+        "Nejde len o kurzy - ide o budovanie komunity odborníkov. Víziou je vytvoriť priestor, kde môžu profesionáli rásť, učiť sa a dostávať podporu pri riešení klinických prípadov. Flexibilita vzdelávacích programov a mentoring na mieru umožňujú každému napredovať podľa svojich potrieb."
+    },
+  ];
+
 
   return (
     <div className="bg-[#F3F3F1]">
@@ -369,9 +410,49 @@ const handleScroll = () => {
         </div>
       </section>
 
-      <section>
+      <section className="hidden md:block">
         <VisionSection />
       </section>
+
+      <section className="w-full mx-auto py-16">
+  <div className="max-w-7xl mx-auto px-4">
+    <h2 className="text-3xl font-bold text-gray-800">
+      Naša vízia a misia
+    </h2>
+
+    {/* Slider pre mobilné zariadenia */}
+    <div
+      ref={aboutSliderRef}
+      className="mt-6 flex overflow-x-auto snap-x snap-mandatory space-x-4 scrollbar-hide md:hidden"
+      onScroll={handleAboutScroll}
+    >
+      {aboutPosts.map((post) => (
+        <div key={post.id} className="w-[85%] flex-shrink-0 snap-start">
+          <div className="bg-white p-6 rounded shadow-md">
+            <h3 className="text-xl font-semibold text-gray-800">
+              {post.title}
+            </h3>
+            <p className="mt-2 text-gray-600">{post.description}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    {/* Indikátory (pásiky) pre mobil */}
+    <div className="flex justify-center items-center mt-6 space-x-1 md:hidden">
+      {aboutPosts.map((_, index) => (
+        <div
+          key={index}
+          className={`h-2 rounded transition-all duration-300 ${
+            activeAboutSlide === index
+              ? "bg-[#38412b] w-10" // Aktívny pásik: tmavší a dlhší
+              : "bg-gray-300 w-4" // Neaktívne pásiky: kratšie a svetlejšie
+          }`}
+        ></div>
+      ))}
+    </div>
+  </div>
+</section>
 
       <section className="slider py-8 px-16 flex flex-col gap-8">
         <div className="flex flex-row px-4 justify-between items-end">
