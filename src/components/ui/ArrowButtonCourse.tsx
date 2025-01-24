@@ -36,7 +36,7 @@ const ArrowButtonCourse: React.FC<AnimatedButtonProps> = ({
     >
       <LuCalendarDays className="z-20 flex-shrink-0 -ml-3 w-6 h-6" />
       <span
-        className={`relative text-sm md:text-base text-center ml-3 mr-auto`}
+        className={`relative text-sm md:text-base text-center ml-1 mr-auto`}
       >
         {text}
       </span>
