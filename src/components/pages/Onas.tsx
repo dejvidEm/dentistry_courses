@@ -10,7 +10,6 @@ import { IoIosCheckmarkCircle } from "react-icons/io";
 import ArrowButton from "../ui/ArrowButton";
 import CourseCard from "../ui/CourseCard";
 import { Link } from "react-router-dom";
-import BlogPostCard from "../ui/BlogPost";
 
 interface TimelineItem {
   year: number;
