@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Breadcrumbs from "../ui/Breadcrumbs";
-import CourseCard from "../ui/CourseCard";
 import ArrowButton from "../ui/ArrowButton";
 import Testimonial from "../ui/ReviewCard";
 import ResponsiveSlider from "../ui/Slider";
