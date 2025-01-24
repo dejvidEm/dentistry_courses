@@ -27,7 +27,7 @@ const ArrowButtonCourse: React.FC<AnimatedButtonProps> = ({
                  before:rounded-md
                  before:inset-0 
                  before:bg-green-6 
-                 before:scale-x-[0.135] 
+                 before:scale-x-[0.155] 
                  before:origin-right
                  before:transition
                  before:duration-300
