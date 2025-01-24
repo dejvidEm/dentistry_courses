@@ -30,7 +30,7 @@ const ArrowButtonCourse: React.FC<AnimatedButtonProps> = ({ text, variant = "gre
                  ${textColorClass}`}
     >
     <LuCalendarDays className="z-20 mr-4"/>
-      <span className={`relative text-base -ml-16`}>{text}</span>
+      <span className={`relative text-sm md:text-base -ml-16`}>{text}</span>
       <MdOutlineArrowOutward size={22} className="z-10 text-slate-50"/>
     </button>
   );
