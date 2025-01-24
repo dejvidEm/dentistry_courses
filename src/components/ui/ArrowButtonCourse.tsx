@@ -34,7 +34,7 @@ const ArrowButtonCourse: React.FC<AnimatedButtonProps> = ({
                  hover:before:scale-x-100
                  ${textColorClass}`}
     >
-      <LuCalendarDays className="z-20 mr-4 flex-shrink-0 w-6 h-6" />
+      <LuCalendarDays className="z-20 flex-shrink-0 w-6 h-6" />
       <span
         className={`relative text-sm md:text-base text-center ml-auto mr-auto`}
       >
