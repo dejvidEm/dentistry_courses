@@ -122,7 +122,7 @@ const Footer: React.FC = () => {
         <div className="md:w-2/3">
           <div className="flex justify-between flex-col items-center md:block">
             <h2 className="font-semibold text-lg">NS Medical</h2>
-            <p className="text-center w-1/2 md:text-left text-sm">{medical}</p>
+            <p className="text-center md:text-left text-sm">{medical}</p>
           </div>
         </div>
 

@@ -142,10 +142,10 @@ const Kurzy: React.FC = () => {
       {/* Hero Section */}
       <section className="w-full bg-white mx-auto py-12 lg:py-24">
         <div className="max-w-[1400px] mx-auto flex flex-col lg:flex-row items-center lg:items-start justify-between px-4 lg:px-[88px] gap-8">
-          <h1 className="text-[36px] lg:text-[58px] leading-none font-semibold text-center lg:text-left">
+          <h1 className="text-[36px] lg:text-[58px] w-full leading-none font-semibold lg:text-left">
             Posuňte kariéru s <br /> našimi kurzami
           </h1>
-          <p className="text-[#736E69] text-center lg:text-left lg:w-[500px]">
+          <p className="text-[#736E69] lg:text-left lg:w-[500px]">
             Naša ponuka kurzov je určená pre tých, ktorí chcú získať nové
             zručnosti, zlepšiť svoju kariéru a neustále sa rozvíjať. Bez ohľadu
             na to, či ste začiatočník alebo skúsený odborník, naše kurzy vám
@@ -174,13 +174,13 @@ const Kurzy: React.FC = () => {
       </section>
 
       {/* Hodnotenia kurzov */}
-      <section className="max-w-[1400px] mx-auto flex flex-col lg:flex-row py-16 px-4 lg:px-16 gap-8 lg:gap-12">
+      <section className="max-w-[1400px] mx-auto reviews flex flex-col lg:flex-row py-24 pb-32 px-8 gap-8 lg:gap-12">
         <div className="flex flex-col gap-8 w-full lg:w-2/3">
-          <div className="flex flex-col lg:flex-row justify-between items-center lg:items-start gap-4">
-            <h1 className="text-gray-800 text-2xl lg:text-3xl font-bold text-center lg:text-left">
+          <div className="flex flex-col lg:flex-col justify-between items-start lg:items-start gap-4">
+            <h1 className="text-gray-800 text-2xl lg:text-3xl font-bold">
               Hodnotenia kurzov
             </h1>
-            <div className="arrows flex-row gap-4 justify-center hidden md:flex lg:justify-start">
+            <div className="arrows flex flex-row gap-4">
               <div
                 className="bg-white rounded-lg p-4 cursor-pointer hover:bg-gray-200 transition"
                 onClick={handleReviewsPrev}
@@ -208,14 +208,14 @@ const Kurzy: React.FC = () => {
                 quote={review.quote}
               />
             ))}
-            visibleItems={2} // 1 viditeľná položka na mobiloch
+            visibleItems={2} // Napr. 2 viditeľné položky na desktopoch
           />
         </div>
-        <div className="flex justify-center items-center lg:items-end">
+        <div className="flex justify-center items-start lg:items-end">
           <img
             src="/images/reviewsCitat.png"
             alt="quote"
-            className="w-full sm:w-[200px] lg:w-[300px]"
+            className="w-[350px]"
           />
         </div>
       </section>

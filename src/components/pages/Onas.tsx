@@ -169,6 +169,18 @@ const Onas = () => {
 
   const [activeYear, setActiveYear] = useState(timelineData[2]);
 
+  const [activeSlide, setActiveSlide] = useState(0);
+const sliderRef = useRef<HTMLDivElement | null>(null);
+
+const handleScroll = () => {
+  if (sliderRef.current) {
+    const scrollLeft = sliderRef.current.scrollLeft;
+    const cardWidth = sliderRef.current.offsetWidth;
+    const index = Math.round(scrollLeft / cardWidth);
+    setActiveSlide(index);
+  }
+};
+
   return (
     <div className="bg-[#F3F3F1]">
       <section className="w-full bg-white px-4 lg:px-20">
@@ -178,78 +190,126 @@ const Onas = () => {
       </section>
 
       {/* Hero sekcia */}
-      <section className="bg-white px-6 md:px-48 relative w-full flex flex-col md:flex-row mx-auto py-16 pb-24 gap-8">
-        {/* Textová časť */}
-        <div className="flex flex-col justify-center gap-4 w-full md:w-1/2 text-center md:text-left">
-          <h1 className="font-bold text-3xl md:text-[58px] pb-2">Naša misia</h1>
-          <p className="text-gray-700 leading-relaxed pb-8 max-w-[550px]">
-            Naším cieľom je vzdelávať zubných lekárov, fyzioterapeutov a
-            študentov zubného lekárstva v špecializovaných oblastiach
-            orofaciálnej bolesti a dysfunkcie, opotrebovania zubov a spánkovej
-            medicíny. Ako jediný špecialista v týchto odboroch na Slovensku,
-            ktorý hovorí po slovensky, sa snažím sprístupniť pokročilé
-            vzdelávanie pre profesionálov u nás.
-          </p>
-          <div className="w-full md:w-96 mx-auto md:mx-0">
-            <Link to="/kurzy"><ArrowButton text="Všetky naše kurzy" /></Link>
-          </div>
-        </div>
+<section className="bg-white px-6 md:px-48 relative w-full flex flex-col md:flex-row mx-auto py-16 pb-24 gap-8">
+  {/* Textová časť */}
+  <div className="flex flex-col justify-center w-full md:w-1/2 text-left order-2 md:order-1">
+    <h1 className="font-bold text-3xl md:text-[58px] pb-2">Naša misia</h1>
+    <p className="text-gray-700 leading-relaxed pb-8 max-w-[550px]">
+      Naším cieľom je vzdelávať zubných lekárov, fyzioterapeutov a
+      študentov zubného lekárstva v špecializovaných oblastiach
+      orofaciálnej bolesti a dysfunkcie, opotrebovania zubov a spánkovej
+      medicíny. Ako jediný špecialista v týchto odboroch na Slovensku,
+      ktorý hovorí po slovensky, sa snažím sprístupniť pokročilé
+      vzdelávanie pre profesionálov u nás.
+    </p>
+    <div className="w-full md:w-96 mx-auto md:mx-0">
+      <Link to="/kurzy">
+        <ArrowButton text="Všetky naše kurzy" />
+      </Link>
+    </div>
+  </div>
 
-        {/* Obrázok a prekryté informácie */}
-        <div className="relative w-full md:w-1/2">
-          <img
-            src="/images/about_hero.png"
-            alt="Profesionálna diskusia"
-            className="w-full rounded-lg shadow-md"
-          />
+  {/* Obrázok a prekryté informácie */}
+  <div className="relative w-full md:w-1/2 md:mb-0 order-1 md:order-2">
+    <img
+      src="/images/about_hero.png"
+      alt="Profesionálna diskusia"
+      className="w-full rounded-lg shadow-md"
+    />
 
-          {/* Prekryté informácie */}
-          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 md:translate-x-0 md:left-4 flex flex-col gap-4">
-            <div className="bg-white rounded-lg shadow-lg p-4 flex items-center gap-2">
-              <IoIosCheckmarkCircle className="text-orange-1" size={24} />
-              <p className="text-gray-700 font-medium">
-                Kvalitné školenia pre profesionálov
-              </p>
-            </div>
-            <div className="bg-white rounded-lg shadow-lg p-4 flex items-center gap-2">
-              <IoIosCheckmarkCircle className="text-orange-1" size={24} />
-              <p className="text-gray-700 font-medium">
-                Roky praxe v oblasti stomatológie
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section className="w-full relative mx-auto py-16">
-        {/* Tmavozelené pozadie */}
-        <div className="absolute top-0 left-0 w-full h-3/5 bg-green-7"></div>
+    {/* Prekryté informácie */}
+    <div className="absolute bottom-2 left-2 flex flex-col gap-4 text-left">
+      <div className="bg-white rounded-lg shadow-lg p-2 flex items-center gap-2 w-[240px]">
+        <IoIosCheckmarkCircle className="text-orange-1" size={24} />
+        <p className="text-gray-700 font-medium text-sm">
+          Kvalitné školenia pre profesionálov
+        </p>
+      </div>
+      <div className="bg-white rounded-lg shadow-lg p-2 flex items-center gap-2 w-[240px]">
+        <IoIosCheckmarkCircle className="text-orange-1" size={24} />
+        <p className="text-gray-700 font-medium text-sm">
+          Roky praxe v oblasti stomatológie
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
 
-        {/* Obsah sekcie */}
-        <div className="relative z-10 max-w-7xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-slate-100">Naše hodnoty</h2>
-          <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-4">
-            {parameters.map((parameters) => (
-              <div key={parameters.id} className="bg-white p-6 rounded">
-                <div className="flex flex-col gap-4">
-                  <div className="bg-[#E6EDD5] text-[#38412b] w-20 h-20 flex z-10 items-center justify-center rounded-full text-lg font-bold">
-                    <div className="bg-[#D4E0B9] text-[#38412b] w-16 h-16 flex z-10 items-center justify-center rounded-full text-lg font-bold">
-                      <div className="bg-[#B8C895] text-[#38412b] w-12 h-12 z-20 flex items-center justify-center rounded-full text-lg font-bold">
-                        {parameters.id < 10
-                          ? `0${parameters.id}`
-                          : parameters.id}
-                      </div>
-                    </div>
-                  </div>
-                  <h3 className="text-lg font-semibold text-gray-800">
-                    {parameters.title}
-                  </h3>
+
+
+<section className="w-full relative mx-auto py-16">
+  {/* Tmavozelené pozadie */}
+  <div className="absolute top-0 left-0 w-full h-3/5 bg-green-7"></div>
+
+  {/* Obsah sekcie */}
+  <div className="relative z-10 max-w-7xl mx-auto px-4">
+    <h2 className="text-3xl font-bold text-slate-100">Naše hodnoty</h2>
+
+    {/* Slider pre mobilné zariadenia */}
+    <div
+      ref={sliderRef}
+      className="mt-10 flex overflow-x-auto snap-x snap-mandatory space-x-4 scrollbar-hide md:hidden"
+      onScroll={handleScroll}
+    >
+      {parameters.map((parameter) => (
+        <div
+          key={parameter.id}
+          className="bg-white p-6 rounded w-[85%] flex-shrink-0 snap-start"
+        >
+          <div className="flex flex-col gap-4">
+            <div className="bg-[#E6EDD5] text-[#38412b] w-20 h-20 flex z-10 items-center justify-center rounded-full text-lg font-bold">
+              <div className="bg-[#D4E0B9] text-[#38412b] w-16 h-16 flex z-10 items-center justify-center rounded-full text-lg font-bold">
+                <div className="bg-[#B8C895] text-[#38412b] w-12 h-12 z-20 flex items-center justify-center rounded-full text-lg font-bold">
+                  {parameter.id < 10 ? `0${parameter.id}` : parameter.id}
                 </div>
-                <p className="mt-4 text-gray-600">{parameters.description}</p>
               </div>
-            ))}
+            </div>
+            <h3 className="text-lg font-semibold text-gray-800">
+              {parameter.title}
+            </h3>
           </div>
+          <p className="mt-4 text-gray-600">{parameter.description}</p>
         </div>
-      </section>
+      ))}
+    </div>
+
+    {/* Grid pre desktop */}
+    <div className="mt-10 grid-cols-1 md:grid-cols-3 gap-4 hidden md:grid">
+      {parameters.map((parameter) => (
+        <div key={parameter.id} className="bg-white p-6 rounded">
+          <div className="flex flex-col gap-4">
+            <div className="bg-[#E6EDD5] text-[#38412b] w-20 h-20 flex z-10 items-center justify-center rounded-full text-lg font-bold">
+              <div className="bg-[#D4E0B9] text-[#38412b] w-16 h-16 flex z-10 items-center justify-center rounded-full text-lg font-bold">
+                <div className="bg-[#B8C895] text-[#38412b] w-12 h-12 z-20 flex items-center justify-center rounded-full text-lg font-bold">
+                  {parameter.id < 10 ? `0${parameter.id}` : parameter.id}
+                </div>
+              </div>
+            </div>
+            <h3 className="text-lg font-semibold text-gray-800">
+              {parameter.title}
+            </h3>
+          </div>
+          <p className="mt-4 text-gray-600">{parameter.description}</p>
+        </div>
+      ))}
+    </div>
+
+    {/* Indikátory (pásiky) pre mobil */}
+    <div className="flex justify-center items-center mt-6 space-x-1 md:hidden">
+      {parameters.map((_, index) => (
+        <div
+          key={index}
+          className={`h-2 rounded transition-all duration-300 ${
+            activeSlide === index
+              ? "bg-[#38412b] w-10" // Aktívny pásik: tmavší a dlhší
+              : "bg-gray-300 w-4" // Neaktívne pásiky: kratšie a svetlejšie
+          }`}
+        ></div>
+      ))}
+    </div>
+  </div>
+</section>
+
 
       <section className="flex flex-col md:flex-row justify-between items-center py-16 px-4 md:px-20">
         {/* Timeline Navigation for Mobile */}
@@ -316,7 +376,7 @@ const Onas = () => {
       <section className="slider py-8 px-16 flex flex-col gap-8">
         <div className="flex flex-row px-4 justify-between items-end">
           <div className="flex flex-col gap-2 w-3/5">
-            <h1 className="text-gray-950 text-3xl font-bold mb-4">
+            <h1 className="text-gray-950 text-xl md:text-3xl font-bold mb-4">
               Skúsenosti, odbornosť a <br />
               vášeň pre vzdelávanie
             </h1>
@@ -355,36 +415,38 @@ const Onas = () => {
       </section>
 
       {/* Sekcia s kurzom a popisom*/}
-      <section className="w-full bg-green-7 px-16 py-12 flex flex-row justify-between items-center">
-        <div className="w-1/2">
-          <CourseCard
-            image={"/images/employee1.png"}
-            title={"Spánková zubná medicína"}
-            description={
-              "Naše kurzy vám ponúkajú najnovšie vedecké poznatky v oblastiach orofaciálnej bolesti, dysfunkcie, opotrebovania zubov a spánkovej medicíny. S flexibilným prístupom k vzdelávaniu a podporou počas celého roka sa môžete stať odborníkom, ktorý poskytuje pacientom starostlivosť na najvyššej úrovni. Využite našu odbornú pomoc a rozšírte svoje schopnosti ešte dnes!"
-            }
-            date={"2025-01-20"}
-            duration={"(8 hodín)"}
-            capacity={"25"}
-          />
-        </div>
-        <div className="w-1/2 flex flex-col gap-4">
-          <h1 className="font-bold text-3xl text-white">
-            Získajte nové vedomosti ešte dnes!
-          </h1>
-          <p className="text-white leading-relaxed">
-            Naše kurzy vám ponúkajú najnovšie vedecké poznatky v oblastiach
-            orofaciálnej bolesti, dysfunkcie, opotrebovania zubov a spánkovej
-            medicíny. S flexibilným prístupom k vzdelávaniu a podporou počas
-            celého roka sa môžete stať odborníkom, ktorý poskytuje pacientom
-            starostlivosť na najvyššej úrovni. Využite našu odbornú pomoc a
-            rozšírte svoje schopnosti ešte dnes!
-          </p>
-          <div className="w-96">
-          <Link to="/kurzy"><ArrowButton text="Všetky naše kurzy" variant="white"/></Link>
-          </div>
-        </div>
-      </section>
+      <section className="w-full bg-green-7 px-4 py-12 flex flex-col md:flex-row justify-between items-center">
+  <div className="w-full md:w-1/2 flex flex-col gap-4 order-1">
+    <h1 className="font-bold text-3xl text-white">
+      Získajte nové vedomosti ešte dnes!
+    </h1>
+    <p className="text-white leading-relaxed">
+      Naše kurzy vám ponúkajú najnovšie vedecké poznatky v oblastiach
+      orofaciálnej bolesti, dysfunkcie, opotrebovania zubov a spánkovej
+      medicíny. S flexibilným prístupom k vzdelávaniu a podporou počas
+      celého roka sa môžete stať odborníkom, ktorý poskytuje pacientom
+      starostlivosť na najvyššej úrovni. Využite našu odbornú pomoc a
+      rozšírte svoje schopnosti ešte dnes!
+    </p>
+    <div className="w-96 mb-12">
+      <Link to="/kurzy">
+        <ArrowButton text="Všetky naše kurzy" variant="white" />
+      </Link>
+    </div>
+  </div>
+  <div className="w-full md:w-1/2 order-2 md:order-3">
+    <CourseCard
+      image={"/images/employee1.png"}
+      title={"Spánková zubná medicína"}
+      description={
+        "Naše kurzy vám ponúkajú najnovšie vedecké poznatky v oblastiach orofaciálnej bolesti, dysfunkcie, opotrebovania zubov a spánkovej medicíny. S flexibilným prístupom k vzdelávaniu a podporou počas celého roka sa môžete stať odborníkom, ktorý poskytuje pacientom starostlivosť na najvyššej úrovni. Využite našu odbornú pomoc a rozšírte svoje schopnosti ešte dnes!"
+      }
+      date={"2025-01-20"}
+      duration={"(8 hodín)"}
+      capacity={"25"}
+    />
+  </div>
+</section>
 
       {/* Hodnotenia kurzov */}
       <section className="max-w-[1400px] mx-auto reviews flex flex-col lg:flex-row py-16 px-8 lg:px-16 gap-8 lg:gap-12">
@@ -428,7 +490,7 @@ const Onas = () => {
           <img
             src="/images/reviewsCitat.png"
             alt="quote"
-            className="w-[200px] lg:w-[300px]"
+            className="w-[400px]"
           />
         </div>
       </section>

@@ -20,20 +20,22 @@ const CategoryFilter: React.FC<CategoryFilterProps> = ({ categories, onSelectCat
   };
 
   return (
-    <div className="max-w-[1400px] mx-auto flex space-x-2">
-      {categories.map((category) => (
-        <button
-          key={category.id}
-          onClick={() => handleCategoryClick(category.id)}
-          className={`px-4 py-2 border rounded-md text-sm ${
-            selectedCategory === category.id
-              ? "border-green-500 text-green-500"
-              : "border-gray-300 text-gray-500"
-          }`}
-        >
-          {category.name} ({category.count})
-        </button>
-      ))}
+    <div className="max-w-[1400px]">
+      <div className="flex overflow-x-auto whitespace-nowrap py-2 justify-start">
+        {categories.map((category) => (
+          <button
+            key={category.id}
+            onClick={() => handleCategoryClick(category.id)}
+            className={`px-4 py-2 border rounded-md text-sm inline-block mr-2 mb-2 ${
+              selectedCategory === category.id
+                ? "border-green-500 text-green-500"
+                : "border-gray-300 text-gray-500"
+            }`}
+          >
+            {category.name} ({category.count})
+          </button>
+        ))}
+      </div>
     </div>
   );
 };

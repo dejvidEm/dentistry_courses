@@ -3,8 +3,7 @@ import { FaArrowRight, FaArrowLeft } from "react-icons/fa6";
 import CourseCard from "../ui/CourseCard";
 import Testimonial from "../ui/ReviewCard";
 import ResponsiveSlider from "../ui/Slider";
-import { useRef } from "react";
-import BlogPostCard from "../ui/BlogPost";
+import { useRef, useState } from "react";
 import ArrowButton from "../ui/ArrowButton";
 import { Link } from "react-router-dom";
 
@@ -182,72 +181,175 @@ const HomePage: React.FC = () => {
   const handleReviewsPrev = () => reviewsSliderRef.current?.handlePrev();
   const handleReviewsNext = () => reviewsSliderRef.current?.handleNext();
 
+  const [activeSlide, setActiveSlide] = useState(0);
+  const sliderRef = useRef<HTMLDivElement | null>(null); 
+
+  const handleScroll = () => {
+    if (sliderRef.current) {
+      const scrollLeft = sliderRef.current.scrollLeft;
+      const cardWidth = sliderRef.current.offsetWidth;
+      const index = Math.round(scrollLeft / cardWidth);
+      setActiveSlide(index);
+    }
+  };
+
+  const [activeBlogSlide, setActiveBlogSlide] = useState(0); // Rozlišujeme názov
+  const blogSliderRef = useRef<HTMLDivElement | null>(null); // Rozlišujeme referenciu
+
+  const handleBlogScroll = () => {
+    if (blogSliderRef.current) {
+      const scrollLeft = blogSliderRef.current.scrollLeft;
+      const cardWidth = blogSliderRef.current.offsetWidth;
+      const index = Math.round(scrollLeft / cardWidth);
+      setActiveBlogSlide(index);
+    }
+  };
+
+  const blogPosts = [
+    {
+      id: 1,
+      category: "Kategoria",
+      imageUrl: "/images/banner_photo.png",
+      title: "Ako správne vykonať dentálnu hygienu",
+      description:
+        "Naučte sa najlepšie postupy a techniky, aby ste svojim pacientom poskytli profesionálnu a dôklad...",
+      date: "16.10.2024",
+    },
+    {
+      id: 2,
+      category: "Kategoria",
+      imageUrl: "/images/banner_photo.png",
+      title: "Ako správne vykonať dentálnu hygienu",
+      description:
+        "Naučte sa najlepšie postupy a techniky, aby ste svojim pacientom poskytli profesionálnu a dôklad...",
+      date: "16.10.2024",
+    },
+    {
+      id: 3,
+      category: "Kategoria",
+      imageUrl: "/images/banner_photo.png",
+      title: "Ako správne vykonať dentálnu hygienu",
+      description:
+        "Naučte sa najlepšie postupy a techniky, aby ste svojim pacientom poskytli profesionálnu a dôklad...",
+      date: "16.10.2024",
+    },
+  ];
+
   return (
     <div className="bg-[#F3F3F1]">
       {/* Hero Section */}
-      <section className="w-full bg-white mx-auto px-32 py-16 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-        <div>
-          <h1 className="text-[58px] font-bold text-gray-800 leading-tight">
-            {heroContent.heading}
-          </h1>
-          <p className="mt-4 text-gray-600 pb-8">{heroContent.description}</p>
-          <Link to="/kurzy"><ArrowButton text="Všetky naše kurzy" /></Link>
-        </div>
-        <div className="grid grid-cols-3 gap-4">
-          {/* Prvý stĺpec */}
-          <div className="col-span-1 flex flex-col gap-4">
-            <img
-              src="/images/Homepage_photo_1.png"
-              alt="Image 1"
-              className="rounded"
-            />
-            <img
-              src="/images/Homepage_photo_3.png"
-              alt="Image 2"
-              className="rounded"
-            />
-          </div>
+<section className="w-full bg-white mx-auto px-4 sm:px-16 md:px-32 py-8 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+  {/* Fotka pre mobilné zariadenia pred nadpisom */}
+  <div className="block sm:hidden">
+    <img
+      src="/images/Homepage_photo_2.png"
+      alt="Image for mobile"
+      className="rounded w-full mb-8"
+    />
+  </div>
 
-          {/* Druhý stĺpec */}
-          <div className="col-span-2">
-            <img
-              src="/images/Homepage_photo_2.png"
-              alt="Image 3"
-              className="rounded h-full w-full object-cover"
-            />
-          </div>
-        </div>
-      </section>
+  <div>
+    <h1 className="text-4xl sm:text-5xl md:text-[58px] font-bold text-gray-800 leading-tight">
+      {heroContent.heading}
+    </h1>
+    <p className="mt-4 text-gray-600 pb-8 text-sm sm:text-base">
+      {heroContent.description}
+    </p>
+    <Link to="/kurzy">
+      <ArrowButton text="Všetky naše kurzy" />
+    </Link>
+  </div>
 
-      {/* Features Section */}
-      <section className="w-full mx-auto py-16">
-        <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-gray-800">
-            Prečo si vybrať nás?
-          </h2>
-          <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-4">
-            {features.map((feature) => (
-              <div key={feature.id} className="bg-white p-6 rounded">
-                <div className="flex flex-col gap-4">
-                  <div className="bg-[#E6EDD5] text-[#38412b] w-20 h-20 flex z-10 items-center justify-center rounded-full text-lg font-bold">
-                    <div className="bg-[#D4E0B9] text-[#38412b] w-16 h-16 flex z-10 items-center justify-center rounded-full text-lg font-bold">
-                      <div className="bg-[#B8C895] text-[#38412b] w-12 h-12 z-20 flex items-center justify-center rounded-full text-lg font-bold">
-                        {feature.id < 10 ? `0${feature.id}` : feature.id}
-                      </div>
-                    </div>
-                  </div>
-                  <h3 className="text-lg font-semibold text-gray-800">
-                    {feature.title}
-                  </h3>
+  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+    {/* Fotky pre väčšie obrazovky */}
+    <div className="hidden sm:flex flex-col gap-4">
+      <img
+        src="/images/Homepage_photo_1.png"
+        alt="Image 1"
+        className="rounded"
+      />
+      <img
+        src="/images/Homepage_photo_3.png"
+        alt="Image 2"
+        className="rounded"
+      />
+    </div>
+    <div className="hidden sm:block md:col-span-2">
+      <img
+        src="/images/Homepage_photo_2.png"
+        alt="Image 3"
+        className="rounded h-full w-full object-cover"
+      />
+    </div>
+  </div>
+</section>
+
+<section className="w-full mx-auto py-16">
+  <div className="max-w-7xl mx-auto px-4">
+    <h2 className="text-3xl font-bold text-gray-800">Prečo si vybrať nás?</h2>
+
+    {/* Slider pre mobilné zariadenia */}
+    <div
+      ref={sliderRef}
+      className="mt-10 flex overflow-x-auto snap-x snap-mandatory space-x-4 scrollbar-hide md:hidden"
+      onScroll={handleScroll}
+    >
+      {features.map((feature) => (
+        <div
+          key={feature.id}
+          className="bg-white p-6 rounded w-[85%] flex-shrink-0 snap-start"
+        >
+          <div className="flex flex-col gap-4">
+            <div className="bg-[#E6EDD5] text-[#38412b] w-20 h-20 flex z-10 items-center justify-center rounded-full text-lg font-bold">
+              <div className="bg-[#D4E0B9] text-[#38412b] w-16 h-16 flex z-10 items-center justify-center rounded-full text-lg font-bold">
+                <div className="bg-[#B8C895] text-[#38412b] w-12 h-12 z-20 flex items-center justify-center rounded-full text-lg font-bold">
+                  {feature.id < 10 ? `0${feature.id}` : feature.id}
                 </div>
-                <p className="mt-4 text-gray-600">{feature.description}</p>
               </div>
-            ))}
+            </div>
+            <h3 className="text-lg font-semibold text-gray-800">{feature.title}</h3>
           </div>
+          <p className="mt-4 text-gray-600">{feature.description}</p>
         </div>
-      </section>
+      ))}
+    </div>
 
-      {/* tmavoyelena sekcia s kurzami */}
+    {/* Grid pre desktop */}
+    <div className="mt-10 grid-cols-1 md:grid-cols-3 gap-4 hidden md:grid">
+      {features.map((feature) => (
+        <div key={feature.id} className="bg-white p-6 rounded">
+          <div className="flex flex-col gap-4">
+            <div className="bg-[#E6EDD5] text-[#38412b] w-20 h-20 flex z-10 items-center justify-center rounded-full text-lg font-bold">
+              <div className="bg-[#D4E0B9] text-[#38412b] w-16 h-16 flex z-10 items-center justify-center rounded-full text-lg font-bold">
+                <div className="bg-[#B8C895] text-[#38412b] w-12 h-12 z-20 flex items-center justify-center rounded-full text-lg font-bold">
+                  {feature.id < 10 ? `0${feature.id}` : feature.id}
+                </div>
+              </div>
+            </div>
+            <h3 className="text-lg font-semibold text-gray-800">{feature.title}</h3>
+          </div>
+          <p className="mt-4 text-gray-600">{feature.description}</p>
+        </div>
+      ))}
+    </div>
+
+    {/* Indikátory (pásiky) pre mobil */}
+    <div className="flex justify-center items-center mt-6 space-x-1 md:hidden">
+      {features.map((_, index) => (
+        <div
+          key={index}
+          className={`h-2 rounded transition-all duration-300 ${
+            activeSlide === index
+              ? "bg-[#38412b] w-10" // Aktívny pásik: tmavší a dlhší
+              : "bg-gray-300 w-4" // Neaktívne pásiky: kratšie a svetlejšie
+          }`}
+        ></div>
+      ))}
+    </div>
+  </div>
+</section>
+
+      {/* tmavozelena sekcia s kurzami */}
       <section className="w-full mx-auto slider bg-[#1C2820] py-16 px-16 flex flex-col gap-12">
         <div className="flex max-w-[1600px] mx-auto flex-col justify-between items-start">
           <div className="flex flex-row pb-8">
@@ -293,36 +395,34 @@ const HomePage: React.FC = () => {
                 capacity={course.capacity}
               />
             ))}
-            visibleItems={3}
+            visibleItems={4}
             showPartialNext={true}
           />
         </div>
       </section>
 
       {/* sekcia s fotkami na lavej strane */}
-      <section className="max-w-[1400px] mx-auto px-16 py-16 grid grid-cols-1 lg:grid-cols-2 gap-48 items-center">
-        {/* Prvý stĺpec */}
-        <div className="flex flex-row gap-4">
-          <img
-            src="/images/home_img_sec.png"
-            alt="Image 1"
-            className="rounded w-[300px]"
-          />
-          <img
-            src="/images/home_img_sec2.png"
-            alt="Image 2"
-            className="rounded w-[300px]"
-          />
-        </div>
-        {/* druhý stĺpec */}
-        <div>
-          <h1 className="text-4xl font-bold text-gray-800 leading-tight">
-            {heroContent2.heading}
-          </h1>
-          <p className="mt-4 text-gray-600 pb-8">{heroContent2.description}</p>
-          <Link to="/about"><ArrowButton text="Zistite o Nás viac" /></Link>
-        </div>
-      </section>
+      <section className="max-w-[1400px] mx-auto px-4 py-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+  {/* Druhý stĺpec */}
+  <div className="">
+    <h1 className="text-3xl font-bold text-gray-800 leading-tight">
+      {heroContent2.heading}
+    </h1>
+    <p className="mt-4 text-gray-600 pb-8">{heroContent2.description}</p>
+    <Link to="/about">
+      <ArrowButton text="Zistite o Nás viac" />
+    </Link>
+  </div>
+
+  {/* Prvý stĺpec - Fotka */}
+  <div className="flex justify-center lg:justify-start">
+    <img
+      src="/images/home_img_sec.png"
+      alt="Image 1"
+      className="rounded w-full lg:w-[300px]"
+    />
+  </div>
+</section>
 
       {/* Hodnotenia kurzov */}
       <section className="max-w-[1400px] mx-auto reviews flex flex-col lg:flex-row py-24 pb-32 px-8 gap-8 lg:gap-12">
@@ -372,45 +472,54 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* Sekcia s článkami */}
-      <section className="max-w-[1400px] mx-auto flex flex-col gap-4 pb-28">
-        <div className="flex flex-col gap-2">
-          <div className="flex flex-row pb-4 justify-between items-center max-w-[1200px] w-full mx-auto">
-            <h1 className="font-semibold text-4xl">
-              Inšpirujte sa našimi <br /> článkami!
-            </h1>
-            <Link to="/blog"><ArrowButton text="Všetky Naše články" /></Link>
-          </div>
+      <section className="w-full mx-auto py-16">
+      <div className="max-w-7xl mx-auto px-4">
+        <h2 className="text-3xl font-bold text-gray-800 pb-4">
+          Inšpirujte sa našimi článkami!
+        </h2>
+        <Link to="/blog">
+      <ArrowButton text="Všetky naše články" />
+    </Link>
+        {/* Slider */}
+        <div
+          ref={blogSliderRef}
+          className="mt-10 flex overflow-x-auto snap-x snap-mandatory space-x-4 scrollbar-hide"
+          onScroll={handleBlogScroll}
+        >
+          {blogPosts.map((post) => (
+            <div
+              key={post.id}
+              className="bg-white p-6 rounded w-[85%] flex-shrink-0 snap-start"
+            >
+              <img
+                src={post.imageUrl}
+                alt={post.title}
+                className="w-full h-40 object-cover rounded"
+              />
+              <h3 className="text-lg font-semibold text-gray-800 mt-4">
+                {post.title}
+              </h3>
+              <p className="mt-2 text-gray-600">{post.description}</p>
+              <span className="text-sm text-gray-500">{post.date}</span>
+            </div>
+          ))}
         </div>
-        <div className="flex flex-row justify-center gap-6 max-w-[1200px] mx-auto">
-          <BlogPostCard
-            category={"Kategoria"}
-            imageUrl={"/images/banner_photo.png"}
-            title={"Ako správne vykonať dentálnu hygienu"}
-            description={
-              "Naučte sa najlepšie postupy a techniky, aby ste svojim pacientom poskytli profesionálnu a dôklad..."
-            }
-            date={"16.10.2024"}
-          />
-          <BlogPostCard
-            category={"Kategoria"}
-            imageUrl={"/images/banner_photo.png"}
-            title={"Ako správne vykonať dentálnu hygienu"}
-            description={
-              "Naučte sa najlepšie postupy a techniky, aby ste svojim pacientom poskytli profesionálnu a dôklad..."
-            }
-            date={"16.10.2024"}
-          />
-          <BlogPostCard
-            category={"Kategoria"}
-            imageUrl={"/images/banner_photo.png"}
-            title={"Ako správne vykonať dentálnu hygienu"}
-            description={
-              "Naučte sa najlepšie postupy a techniky, aby ste svojim pacientom poskytli profesionálnu a dôklad..."
-            }
-            date={"16.10.2024"}
-          />
+
+        {/* Indikátory (pásiky) */}
+        <div className="flex justify-center items-center mt-6 space-x-1">
+          {blogPosts.map((_, index) => (
+            <div
+              key={index}
+              className={`h-2 rounded transition-all duration-300 ${
+                activeBlogSlide === index
+                  ? "bg-[#38412b] w-10" // Aktívny pásik: tmavší a dlhší
+                  : "bg-gray-300 w-4" // Neaktívne pásiky: kratšie a svetlejšie
+              }`}
+            ></div>
+          ))}
         </div>
-      </section>
+      </div>
+    </section>
     </div>
   );
 };
