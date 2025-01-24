@@ -60,10 +60,10 @@ const BlogPage = () => {
 {/* Hero Section */}
 <section className="max-w-[1420px] bg-white mx-auto py-12 lg:py-24 border-b-2 border-gray-1">
   <div className="max-w-[1600px] mx-auto flex flex-col lg:flex-row items-center lg:items-start justify-between px-4 gap-8">
-    <h1 className="text-[28px] sm:text-[36px] lg:text-[58px] leading-tight font-semibold text-center lg:text-left">
+    <h1 className="text-[28px] sm:text-[36px] lg:text-[58px] leading-tight font-semibold lg:text-left">
       Ako správne vykonať <br /> dentálnu hygienu
     </h1>
-    <p className="text-[#736E69] text-center lg:text-left lg:w-[500px] text-sm sm:text-base">
+    <p className="text-[#736E69] lg:text-left lg:w-[500px] text-sm sm:text-base">
       Zistite, ako správne vykonávať dentálnu hygienu, predchádzať zubným
       ochoreniam a udržiavať zdravý úsmev. Naučte sa používať správne
       techniky čistenia a výber vhodných pomôcok na starostlivosť o zuby.
